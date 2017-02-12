@@ -7,7 +7,7 @@ It is also developed to help people remember what they should do, since I'm also
 So, if there is anything wrong about this app, just name it.
 I hope I could make this app better with your help.
 
-By the way, I love this lyrics
+By the way, I love these lyrics
 >Cus you got that James Dean daydream look in your eyes
 >
 >And I got that red lip classic thing that you like
