@@ -7,14 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE07EB121E500F1F001FFD1B /* addOneTotoDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE07EB111E500F1F001FFD1B /* addOneTotoDo.swift */; };
+		BE07EB141E5042CB001FFD1B /* delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE07EB131E5042CB001FFD1B /* delegates.swift */; };
+		BE53F7291E4F2A280044E5B1 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE53F7271E4F2A230044E5B1 /* Material.framework */; };
+		BE53F72A1E4F2A280044E5B1 /* Material.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE53F7271E4F2A230044E5B1 /* Material.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE53F7331E4F517E0044E5B1 /* editCountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53F7321E4F517E0044E5B1 /* editCountDownViewController.swift */; };
 		BE5A9BC51E39E28C00A44A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */; };
 		BE5A9BCA1E39E28C00A44A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5A9BC81E39E28C00A44A1C /* Main.storyboard */; };
 		BE5A9BCD1E39E28C00A44A1C /* planDog_2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BCB1E39E28C00A44A1C /* planDog_2.xcdatamodeld */; };
 		BE5A9BCF1E39E28C00A44A1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5A9BCE1E39E28C00A44A1C /* Assets.xcassets */; };
 		BE5A9BD21E39E28C00A44A1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5A9BD01E39E28C00A44A1C /* LaunchScreen.storyboard */; };
+		BE5A9BDF1E39E2E800A44A1C /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BD91E39E2E800A44A1C /* Tabbar.swift */; };
+		BE5A9BE01E39E2E800A44A1C /* todayinHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BDA1E39E2E800A44A1C /* todayinHistory.swift */; };
+		BE5A9BE11E39E2E800A44A1C /* setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BDB1E39E2E800A44A1C /* setting.swift */; };
+		BE5A9BE21E39E2E800A44A1C /* countDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BDC1E39E2E800A44A1C /* countDown.swift */; };
+		BE5A9BE31E39E2E800A44A1C /* addOneToCountDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BDD1E39E2E800A44A1C /* addOneToCountDown.swift */; };
+		BE5A9BE41E39E2E800A44A1C /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BDE1E39E2E800A44A1C /* homePage.swift */; };
+		BE5A9C941E3C449D00A44A1C /* countDownDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9C931E3C449D00A44A1C /* countDownDetailView.swift */; };
+		BEEF0D661E4EE90100BE9FAB /* versionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0D651E4EE90100BE9FAB /* versionViewController.swift */; };
+		BEEF0D681E4EEC8B00BE9FAB /* aboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0D671E4EEC8B00BE9FAB /* aboutUsViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BE5A9C6E1E3A6F9100A44A1C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BE53F72A1E4F2A280044E5B1 /* Material.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		BE07EB111E500F1F001FFD1B /* addOneTotoDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addOneTotoDo.swift; sourceTree = "<group>"; };
+		BE07EB131E5042CB001FFD1B /* delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = delegates.swift; sourceTree = "<group>"; };
+		BE53F7271E4F2A230044E5B1 /* Material.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Material.framework; path = Carthage/Build/iOS/Material.framework; sourceTree = "<group>"; };
+		BE53F7321E4F517E0044E5B1 /* editCountDownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editCountDownViewController.swift; sourceTree = "<group>"; };
 		BE5A9BC11E39E28C00A44A1C /* planDog_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = planDog_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE5A9BC91E39E28C00A44A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -22,6 +54,15 @@
 		BE5A9BCE1E39E28C00A44A1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE5A9BD11E39E28C00A44A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE5A9BD31E39E28C00A44A1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE5A9BD91E39E2E800A44A1C /* Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		BE5A9BDA1E39E2E800A44A1C /* todayinHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = todayinHistory.swift; sourceTree = "<group>"; };
+		BE5A9BDB1E39E2E800A44A1C /* setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setting.swift; sourceTree = "<group>"; };
+		BE5A9BDC1E39E2E800A44A1C /* countDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countDown.swift; sourceTree = "<group>"; };
+		BE5A9BDD1E39E2E800A44A1C /* addOneToCountDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addOneToCountDown.swift; sourceTree = "<group>"; };
+		BE5A9BDE1E39E2E800A44A1C /* homePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homePage.swift; sourceTree = "<group>"; };
+		BE5A9C931E3C449D00A44A1C /* countDownDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countDownDetailView.swift; sourceTree = "<group>"; };
+		BEEF0D651E4EE90100BE9FAB /* versionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = versionViewController.swift; sourceTree = "<group>"; };
+		BEEF0D671E4EEC8B00BE9FAB /* aboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutUsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +70,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE53F7291E4F2A280044E5B1 /* Material.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE53F7261E4F2A230044E5B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE53F7271E4F2A230044E5B1 /* Material.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE53F7311E4F44420044E5B1 /* todoList */ = {
+			isa = PBXGroup;
+			children = (
+				BE5A9BDE1E39E2E800A44A1C /* homePage.swift */,
+				BE07EB111E500F1F001FFD1B /* addOneTotoDo.swift */,
+			);
+			name = todoList;
+			sourceTree = "<group>";
+		};
 		BE5A9BB81E39E28C00A44A1C = {
 			isa = PBXGroup;
 			children = (
 				BE5A9BC31E39E28C00A44A1C /* planDog_2 */,
 				BE5A9BC21E39E28C00A44A1C /* Products */,
+				BE53F7261E4F2A230044E5B1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +115,11 @@
 			isa = PBXGroup;
 			children = (
 				BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */,
+				BE07EB131E5042CB001FFD1B /* delegates.swift */,
+				BEEF0D641E4EE8E400BE9FAB /* setting */,
+				BE5A9BE61E3A64FD00A44A1C /* complicateThings */,
+				BE5A9BE51E3A64EB00A44A1C /* countDown */,
+				BE53F7311E4F44420044E5B1 /* todoList */,
 				BE5A9BC81E39E28C00A44A1C /* Main.storyboard */,
 				BE5A9BCE1E39E28C00A44A1C /* Assets.xcassets */,
 				BE5A9BD01E39E28C00A44A1C /* LaunchScreen.storyboard */,
@@ -62,6 +127,36 @@
 				BE5A9BCB1E39E28C00A44A1C /* planDog_2.xcdatamodeld */,
 			);
 			path = planDog_2;
+			sourceTree = "<group>";
+		};
+		BE5A9BE51E3A64EB00A44A1C /* countDown */ = {
+			isa = PBXGroup;
+			children = (
+				BE5A9BDC1E39E2E800A44A1C /* countDown.swift */,
+				BE5A9BDD1E39E2E800A44A1C /* addOneToCountDown.swift */,
+				BE5A9C931E3C449D00A44A1C /* countDownDetailView.swift */,
+				BE53F7321E4F517E0044E5B1 /* editCountDownViewController.swift */,
+			);
+			name = countDown;
+			sourceTree = "<group>";
+		};
+		BE5A9BE61E3A64FD00A44A1C /* complicateThings */ = {
+			isa = PBXGroup;
+			children = (
+				BE5A9BD91E39E2E800A44A1C /* Tabbar.swift */,
+				BE5A9BDA1E39E2E800A44A1C /* todayinHistory.swift */,
+			);
+			name = complicateThings;
+			sourceTree = "<group>";
+		};
+		BEEF0D641E4EE8E400BE9FAB /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				BE5A9BDB1E39E2E800A44A1C /* setting.swift */,
+				BEEF0D651E4EE90100BE9FAB /* versionViewController.swift */,
+				BEEF0D671E4EEC8B00BE9FAB /* aboutUsViewController.swift */,
+			);
+			name = setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +169,7 @@
 				BE5A9BBD1E39E28C00A44A1C /* Sources */,
 				BE5A9BBE1E39E28C00A44A1C /* Frameworks */,
 				BE5A9BBF1E39E28C00A44A1C /* Resources */,
+				BE5A9C6E1E3A6F9100A44A1C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,7 +192,7 @@
 				TargetAttributes = {
 					BE5A9BC01E39E28C00A44A1C = {
 						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -136,8 +232,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE5A9BDF1E39E2E800A44A1C /* Tabbar.swift in Sources */,
+				BE5A9C941E3C449D00A44A1C /* countDownDetailView.swift in Sources */,
+				BE07EB121E500F1F001FFD1B /* addOneTotoDo.swift in Sources */,
+				BE53F7331E4F517E0044E5B1 /* editCountDownViewController.swift in Sources */,
+				BE5A9BE11E39E2E800A44A1C /* setting.swift in Sources */,
+				BE5A9BE01E39E2E800A44A1C /* todayinHistory.swift in Sources */,
+				BE5A9BE21E39E2E800A44A1C /* countDown.swift in Sources */,
 				BE5A9BCD1E39E28C00A44A1C /* planDog_2.xcdatamodeld in Sources */,
 				BE5A9BC51E39E28C00A44A1C /* AppDelegate.swift in Sources */,
+				BE07EB141E5042CB001FFD1B /* delegates.swift in Sources */,
+				BE5A9BE31E39E2E800A44A1C /* addOneToCountDown.swift in Sources */,
+				BE5A9BE41E39E2E800A44A1C /* homePage.swift in Sources */,
+				BEEF0D681E4EEC8B00BE9FAB /* aboutUsViewController.swift in Sources */,
+				BEEF0D661E4EE90100BE9FAB /* versionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +366,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = planDog_2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DLUT.planDog-2";
@@ -270,6 +384,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = planDog_2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DLUT.planDog-2";
@@ -297,6 +417,7 @@
 				BE5A9BD81E39E28C00A44A1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
