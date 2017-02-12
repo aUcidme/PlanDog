@@ -55,7 +55,7 @@ class todayinHistory: UIViewController {
     }
     
     private func prepareRefreshButton () {
-        let refreshButton = UIBarButtonItem(image: Icon.addCircleOutline, style: .plain, target: self, action: #selector(refresh))
+        let refreshButton = UIBarButtonItem(image: Icon.home, style: .plain, target: self, action: #selector(refresh))
         refreshButton.tintColor = .white
         self.navigationItem.rightBarButtonItem = refreshButton
     }

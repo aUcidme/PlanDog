@@ -90,7 +90,30 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         items = fetchAllData()
         countDownList.reloadData()
     }
-
+    
+    func saveOneToObjects (detail : String, date : Date, indexPath : IndexPath) {
+        if self.checkDuplicate(detail: detail) {
+            self.reportError(reason: "There is already an item has \(detail)")
+        }
+        else {
+            let context = getContext()
+            
+            let item = self.items[indexPath.row]
+            item.date = date as NSDate?
+            item.detail = detail
+            
+            do {
+                try context.save()
+                print("saved")
+            } catch {
+                print("error")
+            }
+            
+            self.items = self.fetchAllData()
+            
+            self.countDownList.reloadData()
+        }
+    }
     
     func calculateDate (date : Date) -> String {
         let currentDate = Date()
@@ -124,6 +147,28 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let listagemCoreData = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
         
         return ((try? context.fetch(listagemCoreData)) as? [CountDownTo])!
+    }
+    
+    func checkDuplicate (detail : String) -> Bool {
+        return searchCountDown(detail: detail) != nil
+    }
+    
+    func searchCountDown (detail : String) -> CountDownTo? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
+        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
+        
+        let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
+        return result?.first
+    }
+    
+    func reportError (reason : String) {
+        let errorReporter = UIAlertController(title: "Cannot Save", message: "\(reason)", preferredStyle: .alert)
+        
+        let confirmButton = UIAlertAction(title: "Confirm", style: .cancel, handler: nil)
+        
+        errorReporter.addAction(confirmButton)
+        
+        self.present(errorReporter, animated: true, completion: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -191,6 +236,22 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             self.countDownList.deleteRows(at: [indexPath], with: .automatic)
         }
-        return [deleteSwipeButton]
+        
+        let editSwipeButton = UITableViewRowAction(style: .normal, title: "Edit") {(action, indexPath) in
+            let formatter = DateFormatter()
+            formatter.locale = Locale.current
+            formatter.dateFormat = "yyyy-MM-dd"
+            
+            let editingPage = editCountDownViewController()
+            editingPage.addDetail.text = self.items[indexPath.row].detail
+            editingPage.datePicker.date = self.items[indexPath.row].date as! Date
+            editingPage.dateLabel.text = formatter.string(from: self.items[indexPath.row].date as! Date)
+            self.present(editingPage, animated: true, completion: nil)
+            
+            editingPage.cdPackage = { (detail, date) in
+                self.saveOneToObjects(detail: detail, date: date, indexPath: indexPath)
+            }
+        }
+        return [deleteSwipeButton, editSwipeButton]
     }
 }

@@ -201,7 +201,7 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.todoListTable.deleteRows(at: [indexPath], with: .automatic)
         }
         
-        return [editSwipeButton, deleteSwipeButton]
+        return [deleteSwipeButton, editSwipeButton]
     }
 }
 

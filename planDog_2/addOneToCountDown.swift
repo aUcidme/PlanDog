@@ -10,8 +10,6 @@ import UIKit
 import Material
 import CoreData
 
-typealias countDownPackage = (String, Date) -> Void
-
 class addOneToCountDown: UIViewController, UITextFieldDelegate {
     
     let addDetail = TextField(frame: CGRect(x: 10, y: UIScreen.main.bounds.height / 6, width: UIScreen.main.bounds.width - 20, height: 35))
@@ -47,7 +45,6 @@ class addOneToCountDown: UIViewController, UITextFieldDelegate {
     fileprivate func prepareDateLabel () {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
-        formatter.timeZone = TimeZone(abbreviation: "CST")
         formatter.dateFormat = "yyyy-MM-dd"
         
         let date = Date()
@@ -79,7 +76,6 @@ class addOneToCountDown: UIViewController, UITextFieldDelegate {
         
         let formatter = DateFormatter()
         formatter.locale = Locale.current
-        formatter.timeZone = TimeZone(abbreviation: "CST")
         formatter.dateFormat = "yyyy-MM-dd"
         
         dateLabel.text = formatter.string(from: currentDate)
@@ -106,6 +102,7 @@ class addOneToCountDown: UIViewController, UITextFieldDelegate {
         var timeSet = timeSet
         var currentTime = Date()
         let formatter = DateFormatter()
+        formatter.locale = Locale.current
         formatter.dateFormat = "yyyyMMdd"
         
         currentTime = formatter.date(from: formatter.string(from: currentTime))!
@@ -139,7 +136,6 @@ class addOneToCountDown: UIViewController, UITextFieldDelegate {
         else if timeHasPassed(timeSet: datePicker.date) {
             weak var formatter = DateFormatter()
             formatter?.locale = Locale.current
-            formatter?.timeZone = TimeZone(abbreviation: "CST")
             formatter?.dateFormat = "yyyy-MM-dd"
             
             reportError(reason: "\(formatter?.string(from: datePicker.date)) is already passed")
