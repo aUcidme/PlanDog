@@ -16,38 +16,57 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let todoListTable = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: UITableViewStyle.plain)
     
-    func alertError (title : String, detail : String) {
-        let alertError = UIAlertController(title: title, message: detail, preferredStyle: .alert)
-        
-        let confirmButton = UIAlertAction(title: "Confirm", style: .default, handler: nil)
-        alertError.addAction(confirmButton)
-        self.present(alertError, animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        items = fetchCoreData()
+        
+        prepareSelf()
+        prepareToDoListTable()
+        prepareAddOneButton()
+        prepareEditButton()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+    }
+    
+    fileprivate func prepareSelf () {
         self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
         self.title = "To Do"
         self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
-        items = fetchCoreData()
-        
+        self.navigationController?.navigationBar.tintColor = .white
+    }
+    
+    fileprivate func prepareAddOneButton () {
+        let addOneThingToDo = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(jumpToEditingPage))
+        addOneThingToDo.tintColor = UIColor.white
+        self.navigationItem.rightBarButtonItem = addOneThingToDo
+    }
+    
+    fileprivate func prepareToDoListTable () {
         todoListTable.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "todoList")
         todoListTable.delegate = self
         todoListTable.dataSource = self
         todoListTable.tableFooterView = UIView()
         
         view.addSubview(todoListTable)
-        
-        let addOneThingToDo = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(jumpToEditingPage))
-        addOneThingToDo.tintColor = UIColor.white
-        self.navigationItem.rightBarButtonItem = addOneThingToDo
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    fileprivate func prepareEditButton () {
+        let edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(switchToEditMode(button:)))
+        edit.title = "Edit"
+        edit.tag = 100
+        self.navigationItem.leftBarButtonItem = edit
+    }
+    
+    func alertError (title : String, detail : String) {
+        let alertError = UIAlertController(title: title, message: detail, preferredStyle: .alert)
         
+        let confirmButton = UIAlertAction(title: "Confirm", style: .default, handler: nil)
+        alertError.addAction(confirmButton)
+        self.present(alertError, animated: true, completion: nil)
     }
     
     func jumpToEditingPage () {
@@ -57,6 +76,19 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         editingPage.stringPackage = { value in
             self.saveString(passedValue: value)
+        }
+    }
+    
+    func switchToEditMode (button : UIBarButtonItem) {
+        if button.tag == 100 {
+            button.tag = 200
+            button.title = "Done"
+            todoListTable.setEditing(true, animated: true)
+        }
+        else {
+            button.tag = 100
+            button.title = "Edit"
+            todoListTable.setEditing(false, animated: true)
         }
     }
     

@@ -19,19 +19,24 @@ class addOneTotoDo: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
-        self.title = "Editing"
-        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
+        prepareSelf()
         prepareAddDetail()
         prepareSaveButton()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    fileprivate func prepareSelf () {
+        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
+        self.title = "Editing"
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
     
     fileprivate func prepareAddDetail () {
@@ -42,6 +47,7 @@ class addOneTotoDo: UIViewController, UITextFieldDelegate {
         addDetail.tag = 200
         addDetail.font = RobotoFont.regular(with: 16)
         addDetail.detail = "Input whatever you want to remember"
+        addDetail.becomeFirstResponder()
         view.addSubview(addDetail)
     }
     

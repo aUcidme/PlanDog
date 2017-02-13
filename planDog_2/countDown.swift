@@ -33,16 +33,13 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
-        self.title = "Count Down"
-        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
         items = fetchAllData()
         
+        prepareSelf()
         prepareAddButton()
         prepareCountDownList()
         preparePullToRefresh()
+        prepareEditButton()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,13 +47,21 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    private func preparePullToRefresh () {
+    fileprivate func prepareSelf () {
+        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
+        self.title = "Count Down"
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.tintColor = .white
+    }
+    
+    fileprivate func preparePullToRefresh () {
         let pullToRefresh = UIRefreshControl()
         pullToRefresh.addTarget(self, action: #selector(refresh), for: .valueChanged)
         countDownList.addSubview(pullToRefresh)
     }
     
-    private func prepareCountDownList () {
+    fileprivate func prepareCountDownList () {
         countDownList.delegate = self
         countDownList.dataSource = self
         countDownList.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "countDownID")
@@ -65,10 +70,30 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         view.addSubview(countDownList)
     }
     
-    private func prepareAddButton () {
+    fileprivate func prepareAddButton () {
         let addOneThingToCountDown = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(jumpToAddTaskView(button:)))
         addOneThingToCountDown.tintColor = .white
         self.navigationItem.rightBarButtonItem = addOneThingToCountDown
+    }
+    
+    fileprivate func prepareEditButton () {
+        let edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(switchToEditMode(button:)))
+        edit.title = "Edit"
+        edit.tag = 100
+        self.navigationItem.leftBarButtonItem = edit
+    }
+    
+    func switchToEditMode (button : UIBarButtonItem) {
+        if button.tag == 100 {
+            button.tag = 200
+            button.title = "Done"
+            countDownList.setEditing(true, animated: true)
+        }
+        else {
+            button.tag = 100
+            button.title = "Edit"
+            countDownList.setEditing(false, animated: true)
+        }
     }
     
     func addOneToObjects (detail : String, date : Date) {

@@ -15,11 +15,8 @@ class todayinHistory: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
-        self.title = "Today in History"
-        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
+        prepareSelf()
         prepareWebView()
         prepareDateLabel()
         prepareRefreshButton()
@@ -30,14 +27,22 @@ class todayinHistory: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func prepareWebView () {
+    fileprivate func prepareSelf () {
+        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
+        self.title = "Today in History"
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.tintColor = .white
+    }
+    
+    fileprivate func prepareWebView () {
         let wikiLink = NSURL(string: "https://en.wikipedia.org/wiki/Wikipedia:On_this_day/Today")
         let wikiLinkRequest = NSURLRequest(url: wikiLink as! URL)
         wikiView.loadRequest(wikiLinkRequest as URLRequest)
         view.addSubview(wikiView)
     }
     
-    private func prepareDateLabel () {
+    fileprivate func prepareDateLabel () {
         let date = Date()
         
         let formatter = DateFormatter()
@@ -54,7 +59,7 @@ class todayinHistory: UIViewController {
         self.view.addSubview(dateLabel)
     }
     
-    private func prepareRefreshButton () {
+    fileprivate func prepareRefreshButton () {
         let refreshButton = UIBarButtonItem(image: Icon.home, style: .plain, target: self, action: #selector(refresh))
         refreshButton.tintColor = .white
         self.navigationItem.rightBarButtonItem = refreshButton
