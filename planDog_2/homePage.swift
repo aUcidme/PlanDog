@@ -203,5 +203,10 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         return [deleteSwipeButton, editSwipeButton]
     }
+    
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
 

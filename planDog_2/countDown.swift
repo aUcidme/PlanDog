@@ -254,4 +254,8 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         return [deleteSwipeButton, editSwipeButton]
     }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
