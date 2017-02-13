@@ -219,7 +219,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.detailTextLabel?.text = "To：\(formatter.string(from : items[indexPath.row].date! as Date))"
         cell.detailTextLabel?.font = RobotoFont.light(with: 12)
         
-        let timeStillHave = UILabel(frame: CGRect(x: UIScreen.main.bounds.width / 5 * 4 - 50, y: 0, width: UIScreen.main.bounds.width / 5 + 50, height: 80))
+        let timeStillHave = UILabel(frame: CGRect(x: UIScreen.main.bounds.width / 5 * 4 - 50, y: 0, width: UIScreen.main.bounds.width / 5 + 50, height: 60))
         timeStillHave.font = RobotoFont.regular(with: 35)
         timeStillHave.text = calculateDate(date: items[indexPath.row].date as! Date)
         timeStillHave.textAlignment = NSTextAlignment.center
@@ -227,7 +227,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         timeStillHave.numberOfLines = 0
         cell.addSubview(timeStillHave)
         
-        let dayString = UILabel(frame: CGRect(x: timeStillHave.frame.origin.x, y: 50, width: timeStillHave.frame.size.width, height: 30))
+        let dayString = UILabel(frame: CGRect(x: timeStillHave.frame.origin.x, y: 45, width: timeStillHave.frame.size.width, height: 30))
         dayString.font = RobotoFont.thin(with: 13)
         dayString.textAlignment = NSTextAlignment.center
         timeStillHave.textColor = .black
@@ -241,6 +241,10 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 dayString.text = "day"
                 cell.addSubview(dayString)
             }
+        }
+        else {
+            dayString.text = "Done"
+            cell.addSubview(dayString)
         }
         
         return cell
