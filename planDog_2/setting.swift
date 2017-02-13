@@ -23,11 +23,8 @@ class setting: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
-        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.title = "Settings"
         
+        prepareSelf()
         prepareListView()
         prepareExitButton()
     }
@@ -37,7 +34,14 @@ class setting: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-    private func prepareListView () {
+    fileprivate func prepareSelf () {
+        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.title = "Settings"
+    }
+    
+    fileprivate func prepareListView () {
         let settingList = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2), style: UITableViewStyle.plain)
         settingList.delegate = self
         settingList.dataSource = self
@@ -46,7 +50,7 @@ class setting: UIViewController, UITableViewDelegate, UITableViewDataSource {
         view.addSubview(settingList)
     }
     
-    private func prepareExitButton () {
+    fileprivate func prepareExitButton () {
         let exitButton = RaisedButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.height / 2, width: UIScreen.main.bounds.width, height: 45))
         exitButton.backgroundColor = UIColor(colorLiteralRed: 197/255, green: 53/255, blue: 42/255, alpha: 1)
         exitButton.setTitle("Exit", for: .normal)

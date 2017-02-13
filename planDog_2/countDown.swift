@@ -141,12 +141,16 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func calculateDate (date : Date) -> String {
-        let currentDate = Date()
+        var currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        formatter.locale = Locale.current
+        currentDate = formatter.date(from: formatter.string(from: currentDate))!
         
         let numberOfDay = date.timeIntervalSince(currentDate)
         let intNumberOfDay = Int(numberOfDay / 24 / 60 / 60)
         
-        if intNumberOfDay > 0 {
+        if intNumberOfDay != 0 {
             return "\(intNumberOfDay)"
         }
         else {
@@ -222,6 +226,23 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         timeStillHave.textColor = UIColor.black
         timeStillHave.numberOfLines = 0
         cell.addSubview(timeStillHave)
+        
+        let dayString = UILabel(frame: CGRect(x: timeStillHave.frame.origin.x, y: 50, width: timeStillHave.frame.size.width, height: 30))
+        dayString.font = RobotoFont.thin(with: 13)
+        dayString.textAlignment = NSTextAlignment.center
+        timeStillHave.textColor = .black
+
+        if timeStillHave.text != "✅" {
+            if Int(timeStillHave.text!)! > 1 {
+                dayString.text = "days"
+                cell.addSubview(dayString)
+            }
+            else {
+                dayString.text = "day"
+                cell.addSubview(dayString)
+            }
+        }
+        
         return cell
     }
     
