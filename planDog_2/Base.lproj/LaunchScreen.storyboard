@@ -23,12 +23,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edm-2L-PcD">
-                                <rect key="frame" x="161" y="368" width="52" height="21"/>
+                                <rect key="frame" x="153" y="368" width="69" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6gt-qg-olD"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="计划狗">
+                                    <fragment content="PlanDog">
                                         <attributes>
                                             <font key="NSFont" size="17" name=".PingFangSC-Regular"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -37,10 +37,16 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="planDogIcon" highlightedImage="planDogIcon" translatesAutoresizingMaskIntoConstraints="NO" id="uie-et-NoA">
+                                <rect key="frame" x="87" y="160" width="201" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="tda-Rs-GPd"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDk-25-6CT">
                                 <rect key="frame" x="77" y="397" width="221" height="51"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Made By OurEDA">
+                                    <fragment content="Made By aUcid">
                                         <attributes>
                                             <font key="NSFont" size="17" name="AmericanTypewriter"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -49,12 +55,6 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="planDogIcon" highlightedImage="planDogIcon" translatesAutoresizingMaskIntoConstraints="NO" id="uie-et-NoA">
-                                <rect key="frame" x="87" y="160" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="tda-Rs-GPd"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
