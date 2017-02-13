@@ -24,8 +24,8 @@ class editCountDownViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
         
+        prepareSelf()
         prepareToolBar()
         prepareStatusBar()
         prepareDateLabel()
@@ -39,6 +39,10 @@ class editCountDownViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    fileprivate func prepareSelf () {
+        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
     }
     
     fileprivate func prepareToolBar () {

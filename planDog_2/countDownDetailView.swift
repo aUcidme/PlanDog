@@ -18,8 +18,8 @@ class countDownDetailView: UIViewController, PassValueDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
         
+        prepareSelf()
         prepareLabel()
         prepareToolBar()
         prepareStatusBar()
@@ -37,6 +37,10 @@ class countDownDetailView: UIViewController, PassValueDelegate {
     
     func dismissController () {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    fileprivate func prepareSelf () {
+        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
     }
     
     fileprivate func prepareLabel () {

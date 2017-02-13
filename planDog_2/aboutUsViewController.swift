@@ -13,12 +13,8 @@ class aboutUsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
-        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.tintColor = .white
-        self.title = "About Us"
         
+        prepareSelf()
         prepareBioCard()
     }
 
@@ -27,7 +23,15 @@ class aboutUsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func prepareBioCard () {
+    fileprivate func prepareSelf () {
+        self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.tintColor = .white
+        self.title = "About Us"
+    }
+    
+    fileprivate func prepareBioCard () {
         let label = UILabel(frame: view.bounds)
         label.text = "Made by OurEDA"
         label.font = RobotoFont.light(with: 16)
