@@ -11,3 +11,9 @@ import Foundation
 protocol PassingValueDelegate {
     func passingValue (detail : String)
 }
+
+protocol PassValueDelegate {
+    func passValue(detail : String, date : Date)
+}
+
+typealias countDownPackage = (String, Date) -> Void // edited, edited, origin, origin

@@ -10,8 +10,6 @@ import UIKit
 import Material
 import CoreData
 
-typealias countDownPackage = (String, Date) -> Void
-
 class editCountDownViewController: UIViewController, UITextFieldDelegate {
     
     let addDetail = TextField(frame: CGRect(x: 10, y: UIScreen.main.bounds.height / 6, width: UIScreen.main.bounds.width - 20, height: 35))
@@ -80,13 +78,13 @@ class editCountDownViewController: UIViewController, UITextFieldDelegate {
         addDetail.tag = 200
         addDetail.font = RobotoFont.regular(with: 16)
         addDetail.detail = "Input whatever you want to remember"
-//        addDetail.text = passedDetailString!
+
         view.addSubview(addDetail)
     }
     
     fileprivate func prepareDatePicker () {
         datePicker.datePickerMode = .date
-//        datePicker.date = passedDate!
+
         datePicker.addTarget(self, action: #selector(setLabelContent(picker:)), for: .valueChanged)
         view.addSubview(datePicker)
     }
@@ -96,7 +94,6 @@ class editCountDownViewController: UIViewController, UITextFieldDelegate {
         formatter.locale = Locale.current
         formatter.dateFormat = "yyyy-MM-dd"
         
-//        dateLabel.text = formatter.string(from: nil)
         dateLabel.font = RobotoFont.regular(with: 25)
         view.addSubview(dateLabel)
     }
@@ -115,9 +112,9 @@ class editCountDownViewController: UIViewController, UITextFieldDelegate {
         if (editedString?.isEmpty)! {
             self.reportError(reason: "Detail cannot be empty!")
         }
-        else if editedString == currentString {
-            self.reportError(reason: "You didn't edit anything!")
-        }
+//        else if editedString == currentString && currentDate == editedDate {
+//            self.reportError(reason: "You didn't edit anything!")
+//        }
         else if self.calculateDate(date: editedDate) != "✅" && Int(self.calculateDate(date: editedDate))! < 0 || Int(self.calculateDate(date: editedDate)) == nil {
             self.reportError(reason: "\"\(editedDate)\" has passed")
         }

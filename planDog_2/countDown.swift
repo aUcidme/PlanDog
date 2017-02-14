@@ -10,9 +10,6 @@ import UIKit
 import CoreData
 import Material
 
-protocol PassValueDelegate {
-    func passValue(detail : String, date : Date)
-}
 
 class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -24,8 +21,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let editingPage = addOneToCountDown()
         
         self.navigationController?.pushViewController(editingPage, animated: true)
-//        self.items = fetchAllData()
-//        self.countDownList.reloadData()
         editingPage.cdPackage = { (detail, date) in
             self.addOneToObjects(detail: detail, date: date)
         }
@@ -116,16 +111,16 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         countDownList.reloadData()
     }
     
-    func saveOneToObjects (detail : String, date : Date, indexPath : IndexPath) {
-        if self.checkDuplicate(detail: detail) {
+    func saveOneToObjects (detail : String, date : Date, currentDetail : String, indexPath : IndexPath) {
+        if !self.checkAllDuplicate(detail: detail) {
             self.reportError(reason: "There is already an item has \(detail)")
         }
         else {
             let context = getContext()
             
-            let item = self.items[indexPath.row]
-            item.date = date as NSDate?
-            item.detail = detail
+            let item = self.searchCountDown(detail: currentDetail)
+            item?.date = date as NSDate?
+            item?.detail = detail
             
             do {
                 try context.save()
@@ -182,12 +177,31 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return searchCountDown(detail: detail) != nil
     }
     
+    func checkAllDuplicate (detail : String) -> Bool {
+        let allItems = searchAllCountDown(detail: detail)
+        var iCoun = 0
+        for item in allItems {
+            if item.detail == detail {
+                iCoun += 1
+            }
+        }
+        return iCoun == 0 || iCoun == 1
+    }
+    
     func searchCountDown (detail : String) -> CountDownTo? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
         fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
         
         let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
         return result?.first
+    }
+
+    func searchAllCountDown (detail : String) -> [CountDownTo] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
+        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
+        
+        let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
+        return (result)!
     }
     
     func reportError (reason : String) {
@@ -211,7 +225,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
-        formatter.timeZone = TimeZone(abbreviation: "CST")
         formatter.dateFormat = "yyyy-MM-dd"
         
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "countDownID")
@@ -292,14 +305,17 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
             formatter.locale = Locale.current
             formatter.dateFormat = "yyyy-MM-dd"
             
+            let currentDetail = self.items[indexPath.row].detail
+            
             let editingPage = editCountDownViewController()
             editingPage.addDetail.text = self.items[indexPath.row].detail
             editingPage.datePicker.date = self.items[indexPath.row].date as! Date
             editingPage.dateLabel.text = formatter.string(from: self.items[indexPath.row].date as! Date)
             self.present(editingPage, animated: true, completion: nil)
             
+            
             editingPage.cdPackage = { (detail, date) in
-                self.saveOneToObjects(detail: detail, date: date, indexPath: indexPath)
+                self.saveOneToObjects(detail: detail, date: date, currentDetail: currentDetail!, indexPath: indexPath)
             }
         }
         return [deleteSwipeButton, editSwipeButton]

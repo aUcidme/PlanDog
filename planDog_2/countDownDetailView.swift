@@ -16,6 +16,16 @@ class countDownDetailView: UIViewController, PassValueDelegate {
     public var detail : String?
     public var date : Date?
     
+    
+    func passValue(detail: String, date: Date) {
+        self.detail = detail
+        self.date = date
+    }
+    
+    func dismissController () {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,15 +38,6 @@ class countDownDetailView: UIViewController, PassValueDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func passValue(detail: String, date: Date) {
-        self.detail = detail
-        self.date = date
-    }
-    
-    func dismissController () {
-        self.dismiss(animated: true, completion: nil)
     }
     
     fileprivate func prepareSelf () {

@@ -139,11 +139,11 @@ class addOneToCountDown: UIViewController, UITextFieldDelegate {
             reportError(reason: "There is already an item has \(detailText)")
         }
         else if timeHasPassed(timeSet: datePicker.date) {
-            weak var formatter = DateFormatter()
-            formatter?.locale = Locale.current
-            formatter?.dateFormat = "yyyy-MM-dd"
+            let formatter = DateFormatter()
+            formatter.locale = Locale.current
+            formatter.dateFormat = "yyyy-MM-dd"
             
-            reportError(reason: "\(formatter?.string(from: datePicker.date)) is already passed")
+            reportError(reason: "\(formatter.string(from: datePicker.date)) is already passed")
         }
         else {
             cdPackage!(addDetail.text!, datePicker.date)
