@@ -69,19 +69,19 @@ class setting: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "settingCell")
-        cell.imageView?.image = UIImage(named: settingImage[indexPath.row])
-        cell.textLabel?.text = settingOptions[indexPath.row]
+        cell.imageView?.image = UIImage(named: settingImage[indexPath.section])
+        cell.textLabel?.text = settingOptions[indexPath.section]
         cell.textLabel?.font = RobotoFont.light(with: 16)
         
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingOptions.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
