@@ -15,6 +15,10 @@ class versionViewController: UIViewController, UITableViewDelegate, UITableViewD
                    "Created by cid aU on 2017/2/11.",
                    "OurEDA"]
     
+    let headerTitle = ["Version",
+                      "Creator",
+                      "Organization"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +40,7 @@ class versionViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     fileprivate func prepareListView () {
-        let list = UITableView(frame: view.bounds, style: .plain)
+        let list = UITableView(frame: view.bounds, style: .grouped)
         list.dataSource = self
         list.delegate = self
         list.tableFooterView = UIView()
@@ -45,16 +49,16 @@ class versionViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return version.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "version")
-        cell.textLabel?.text = version[indexPath.row]
+        cell.textLabel?.text = version[indexPath.section]
         cell.textLabel?.font = RobotoFont.light(with: 16)
         
         return cell
@@ -62,5 +66,9 @@ class versionViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return headerTitle[section]
     }
 }
