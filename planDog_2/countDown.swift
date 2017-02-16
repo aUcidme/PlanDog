@@ -78,6 +78,14 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.navigationItem.leftBarButtonItem = edit
     }
     
+    func specialFormatter () -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        return formatter
+    }
+    
     func switchToEditMode (button : UIBarButtonItem) {
         if button.tag == 100 {
             button.tag = 200
@@ -223,9 +231,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd"
+        let formatter = specialFormatter()
         
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "countDownID")
         cell.textLabel?.text = items[indexPath.row].detail
@@ -240,10 +246,10 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         timeStillHave.numberOfLines = 0
         cell.addSubview(timeStillHave)
         
-        let dayString = UILabel(frame: CGRect(x: timeStillHave.frame.origin.x, y: 45, width: timeStillHave.frame.size.width, height: 30))
+        let dayString = UILabel(frame: CGRect(x: timeStillHave.frame.origin.x, y: 45, width: timeStillHave.frame.size.width, height: 15))
         dayString.font = RobotoFont.thin(with: 13)
         dayString.textAlignment = NSTextAlignment.center
-        timeStillHave.textColor = .black
+        dayString.textColor = .black
 
         if timeStillHave.text != "✅" {
             if Int(timeStillHave.text!)! > 1 {
