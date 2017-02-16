@@ -90,12 +90,16 @@ class editCountDownViewController: UIViewController, UITextFieldDelegate {
     }
     
     fileprivate func prepareDateLabel () {
+        dateLabel.font = RobotoFont.regular(with: 25)
+        view.addSubview(dateLabel)
+    }
+    
+    func dateFormatter () -> DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
         formatter.dateFormat = "yyyy-MM-dd"
         
-        dateLabel.font = RobotoFont.regular(with: 25)
-        view.addSubview(dateLabel)
+        return formatter
     }
     
     func backToUpperPage () {
@@ -127,8 +131,7 @@ class editCountDownViewController: UIViewController, UITextFieldDelegate {
     func setLabelContent (picker : UIDatePicker) {
         let currentDate = picker.date
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        let formatter = dateFormatter()
         
         dateLabel.text = formatter.string(from: currentDate)
     }

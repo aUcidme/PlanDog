@@ -16,4 +16,8 @@ protocol PassValueDelegate {
     func passValue(detail : String, date : Date)
 }
 
-typealias countDownPackage = (String, Date) -> Void // edited, edited, origin, origin
+typealias countDownPackage = (String, Date) -> Void
+
+typealias stringPackage = (String) -> Void
+
+typealias datePackage = (Date) -> Void

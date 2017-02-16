@@ -10,11 +10,9 @@ import UIKit
 import Material
 import CoreData
 
-class addOneToCountDown: UIViewController, UITextFieldDelegate {
+class addOneToCountDown: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let addDetail = TextField(frame: CGRect(x: 10, y: UIScreen.main.bounds.height / 6, width: UIScreen.main.bounds.width - 20, height: 35))
-    let datePicker = UIDatePicker(frame: CGRect(x: 0, y: UIScreen.main.bounds.height / 3 * 2, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3))
-    let dateLabel = UILabel(frame: CGRect(x: 10, y: UIScreen.main.bounds.height / 6 + 80 , width: UIScreen.main.bounds.width - 20, height: 35))
+    let addList = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: .grouped)
     
     var cdPackage : countDownPackage?
 
@@ -22,10 +20,8 @@ class addOneToCountDown: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         prepareSelf()
-        prepareAddDetailBlank()
-        prepareDatePicker()
         prepareSaveButton()
-        prepareDateLabel()
+        prepareAddList()
         
     }
 
@@ -47,43 +43,10 @@ class addOneToCountDown: UIViewController, UITextFieldDelegate {
         self.navigationItem.rightBarButtonItem = saveButton
     }
     
-    fileprivate func prepareDateLabel () {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        let date = Date()
-        
-        dateLabel.text = formatter.string(from: date)
-        dateLabel.font = RobotoFont.regular(with: 25)
-        view.addSubview(dateLabel)
-    }
-    
-    fileprivate func prepareAddDetailBlank () {
-        addDetail.placeholder = "Content"
-        addDetail.adjustsFontSizeToFitWidth = true
-        addDetail.minimumFontSize = 10
-        addDetail.delegate = self
-        addDetail.tag = 200
-        addDetail.font = RobotoFont.regular(with: 16)
-        addDetail.detail = "Input whatever you want to remember"
-        view.addSubview(addDetail)
-    }
-    
-    fileprivate func prepareDatePicker () {
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(setLabelContent(picker:)), for: .valueChanged)
-        view.addSubview(datePicker)
-    }
-    
-    func setLabelContent (picker : UIDatePicker) {
-        let currentDate = picker.date
-        
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        dateLabel.text = formatter.string(from: currentDate)
+    fileprivate func prepareAddList () {
+        addList.dataSource = self
+        addList.delegate = self
+        view.addSubview(addList)
     }
     
     func searchCountDown (detail : String) -> CountDownTo? {
@@ -130,30 +93,103 @@ class addOneToCountDown: UIViewController, UITextFieldDelegate {
     }
     
     func saveAction () {
-        let detailText = addDetail.text!
+        let formatter = specialFormatter()
         
-        if detailText.isEmpty {
-            reportError(reason: "New item cannot be empty.")
+        let date = formatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)! + " " + (addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)!)
+        
+        let detail = addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text
+        cdPackage!(detail!, date!)
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    func dateFormatter () -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        return formatter
+    }
+    
+    func timeFormatter () -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "HH:mm:ss"
+        
+        return formatter
+    }
+    
+    func specialFormatter () -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        return formatter
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "addList")
+        cell.textLabel?.font = RobotoFont.regular(with: 16)
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        switch indexPath.section {
+        case 0:
+            cell.imageView?.image = UIImage(named: "标题")
+        case 1:
+            cell.imageView?.image = UIImage(named: "日期")
+        default:
+            cell.imageView?.image = UIImage(named: "时间")
         }
-        else if checkDuplicate(detail: detailText) {
-            reportError(reason: "There is already an item has \(detailText)")
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Detail"
         }
-        else if timeHasPassed(timeSet: datePicker.date) {
-            let formatter = DateFormatter()
-            formatter.locale = Locale.current
-            formatter.dateFormat = "yyyy-MM-dd"
-            
-            reportError(reason: "\(formatter.string(from: datePicker.date)) is already passed")
+        else if section == 1 {
+            return "Date"
         }
         else {
-            cdPackage!(addDetail.text!, datePicker.date)
-            self.navigationController?.popViewController(animated: true)
+            return "Time"
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let detailView = addDetailView()
+            self.navigationController?.pushViewController(detailView, animated: true)
+            detailView.dPackage = { (string) in
+                tableView.cellForRow(at: indexPath)?.textLabel?.text = string
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        else if indexPath.section == 1 {
+            let dateView = addDateView()
+            self.navigationController?.pushViewController(dateView, animated: true)
+            dateView.dPackage = { (date) in
+                let formatter = self.dateFormatter()
+                
+                tableView.cellForRow(at: indexPath)?.textLabel?.text = formatter.string(from: date)
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        else {
+            let timeView = addTimeView()
+            self.navigationController?.pushViewController(timeView, animated: true)
+            timeView.dPackage = { (time) in
+                let formatter = self.timeFormatter()
+                
+                tableView.cellForRow(at: indexPath)?.textLabel?.text = formatter.string(from: time)
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
 }
