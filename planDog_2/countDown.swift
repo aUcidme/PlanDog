@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 import Material
+import UserNotifications
 
 
-class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, UNUserNotificationCenterDelegate {
 
     public let countDownList = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: .plain)
     
@@ -101,13 +102,34 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func addOneToObjects (detail : String, date : Date) {
-        let dateSet = date
+    func formNotification (detail: String, subtitle: String, date: Date) {
+        let content = UNMutableNotificationContent()
+        content.title = "You have an coming enent!"
+        content.body = subtitle
+        content.subtitle = detail
         
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: date.timeIntervalSince(Date()), repeats: false)
+        
+        let requestID = detail
+        
+        let request = UNNotificationRequest(identifier: requestID, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error == nil {
+                print("Bingo!")
+            }
+        }
+    }
+    
+    func cancelNotification (detail : String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [detail])
+    }
+    
+    func addOneToObjects (detail : String, date : Date) {
         let context = getContext()
         let entity = NSEntityDescription.insertNewObject(forEntityName: "CountDownTo", into: context) as! CountDownTo
         
-        entity.date = dateSet as NSDate?
+        entity.date = date as NSDate?
         entity.detail = detail
         
         do {
@@ -116,7 +138,8 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         } catch {
             print("error")
         }
-        
+        let formtter = specialFormatter()
+        formNotification(detail: detail, subtitle: formtter.string(from: date), date: date)
         items = fetchAllData()
         countDownList.reloadData()
     }
@@ -183,9 +206,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return ((try? context.fetch(listagemCoreData)) as? [CountDownTo])!
     }
     
-    func checkDuplicate (detail : String) -> Bool {
-        return searchCountDown(detail: detail) != nil
-    }
     
     func checkAllDuplicate (detail : String) -> Bool {
         let allItems = searchAllCountDown(detail: detail)
@@ -293,7 +313,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteSwipeButton = UITableViewRowAction(style: .default, title: "Delete") {(action, indexPath) in
             let itemToDelete = self.items[indexPath.row]
-            
+            self.cancelNotification(detail: itemToDelete.detail!)
             self.getContext().delete(itemToDelete)
             
             do {
