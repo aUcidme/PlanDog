@@ -1,8 +1,8 @@
 //
-//  addOneToCountDown.swift
-//  planDog
+//  editView.swift
+//  planDog_2
 //
-//  Created by cid aU on 2017/1/25.
+//  Created by cid aU on 2017/2/18.
 //  Copyright © 2017年 cid aU. All rights reserved.
 //
 
@@ -10,21 +10,23 @@ import UIKit
 import Material
 import CoreData
 
-class addOneToCountDown: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class editView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let addList = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: .grouped)
+    let editList = UITableView(frame: CGRect(x: 0, y: 35 + UIApplication.shared.statusBarFrame.size.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 35 - UIApplication.shared.statusBarFrame.size.height), style: .grouped)
     
+    var passedString : String?
+    var passedDate : Date?
     var cdPackage : countDownPackage?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         prepareSelf()
-        prepareSaveButton()
         prepareAddList()
-        
+        prepareToolBar()
+        prepareStatusBar()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -38,27 +40,41 @@ class addOneToCountDown: UIViewController, UITableViewDelegate, UITableViewDataS
         self.title = "Editing"
     }
     
-    fileprivate func prepareSaveButton () {
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveAction))
-        self.navigationItem.rightBarButtonItem = saveButton
+    fileprivate func prepareStatusBar () {
+        let statusBarBackView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIApplication.shared.statusBarFrame.size.height))
+        statusBarBackView.backgroundColor = Color.blue.darken3
+        
+        view.addSubview(statusBarBackView)
     }
     
     fileprivate func prepareAddList () {
-        addList.dataSource = self
-        addList.delegate = self
-        view.addSubview(addList)
+        editList.dataSource = self
+        editList.delegate = self
+        view.addSubview(editList)
     }
     
-    func searchCountDown (detail : String) -> CountDownTo? {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
-        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
+    fileprivate func prepareToolBar () {
+        let toolBar = Toolbar(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.size.height, width: UIScreen.main.bounds.width, height: 35))
         
-        let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
-        return result?.first
+        let back = IconButton(image: Icon.cm.close, tintColor: .white)
+        back.pulseColor = .white
+        back.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
+        
+        let save = IconButton(image: Icon.cm.pen, tintColor: .white)
+        save.pulseColor = .white
+        save.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
+        
+        toolBar.backgroundColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
+        toolBar.leftViews = [back]
+        toolBar.rightViews = [save]
+        toolBar.title = "Count Down"
+        toolBar.detailLabel.text = "Editing"
+        
+        view.addSubview(toolBar)
     }
     
-    func checkDuplicate (detail : String) -> Bool {
-        return searchCountDown(detail: detail) != nil
+    func dismissController () {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func getContext () -> NSManagedObjectContext {
@@ -66,22 +82,6 @@ class addOneToCountDown: UIViewController, UITableViewDelegate, UITableViewDataS
         return appDelegate.persistentContainer.viewContext
     }
     
-    func timeHasPassed (timeSet : Date) -> Bool {
-        var timeSet = timeSet
-        var currentTime = Date()
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyyMMdd"
-        
-        currentTime = formatter.date(from: formatter.string(from: currentTime))!
-        timeSet = formatter.date(from: formatter.string(from: timeSet))!
-        
-        if timeSet.timeIntervalSince(currentTime) < 0 {
-            return true
-        }
-        return false
-    }
-
     func reportError (reason : String) {
         let errorReporter = UIAlertController(title: "Cannot Save", message: "\(reason)", preferredStyle: .alert)
         
@@ -95,13 +95,13 @@ class addOneToCountDown: UIViewController, UITableViewDelegate, UITableViewDataS
     func saveAction () {
         let formatter = specialFormatter()
         
-        let date = formatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)! + " " + (addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)! + ":00")
+        let date = formatter.date(from: (editList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)! + " " + (editList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)! + ":00")
         
-        let detail = addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text
+        let detail = editList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text
         cdPackage!(detail!, date!)
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
-
+    
     func dateFormatter () -> DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
@@ -141,10 +141,15 @@ class addOneToCountDown: UIViewController, UITableViewDelegate, UITableViewDataS
         switch indexPath.section {
         case 0:
             cell.imageView?.image = UIImage(named: "标题")
+            cell.textLabel?.text = passedString
         case 1:
+            let formatter = dateFormatter()
             cell.imageView?.image = UIImage(named: "日期")
+            cell.textLabel?.text = formatter.string(from: passedDate!)
         default:
+            let formatter = timeFormatter()
             cell.imageView?.image = UIImage(named: "时间")
+            cell.textLabel?.text = formatter.string(from: passedDate!)
         }
         return cell
     }
@@ -163,32 +168,37 @@ class addOneToCountDown: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let detailView = addDetailView()
-            self.navigationController?.pushViewController(detailView, animated: true)
-            detailView.dPackage = { (string) in
-                tableView.cellForRow(at: indexPath)?.textLabel?.text = string
+            let detailView = editDetailView()
+            detailView.modalTransitionStyle = .partialCurl
+            detailView.editDetail.text = tableView.cellForRow(at: indexPath)?.textLabel?.text
+            self.present(detailView, animated: true, completion: nil)
+            detailView.dPackage = {(detail) in
+                tableView.cellForRow(at: indexPath)?.textLabel?.text = detail
             }
             tableView.deselectRow(at: indexPath, animated: true)
         }
         else if indexPath.section == 1 {
-            let dateView = addDateView()
-            self.navigationController?.pushViewController(dateView, animated: true)
-            dateView.dPackage = { (date) in
-                let formatter = self.dateFormatter()
-                
-                tableView.cellForRow(at: indexPath)?.textLabel?.text = formatter.string(from: date)
+            let dateView = editDateView()
+            dateView.modalTransitionStyle = .partialCurl
+            dateView.dateLabel.text = tableView.cellForRow(at: indexPath)?.textLabel?.text
+            dateView.datePicker.date = passedDate!
+            self.present(dateView, animated: true, completion: nil)
+            dateView.dPackage = {(date) in
+                tableView.cellForRow(at: indexPath)?.textLabel?.text = date
             }
             tableView.deselectRow(at: indexPath, animated: true)
         }
         else {
-            let timeView = addTimeView()
-            self.navigationController?.pushViewController(timeView, animated: true)
+            let timeView = editTimeView()
+            timeView.modalTransitionStyle = .partialCurl
+            timeView.timeLabel.text = tableView.cellForRow(at: indexPath)?.textLabel?.text
+            timeView.timePicker.date = passedDate!
+            self.present(timeView, animated: true, completion: nil)
             timeView.dPackage = { (time) in
-                let formatter = self.timeFormatter()
-                
-                tableView.cellForRow(at: indexPath)?.textLabel?.text = formatter.string(from: time)
+                tableView.cellForRow(at: indexPath)?.textLabel?.text = time
             }
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }
+

@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		BE07EB121E500F1F001FFD1B /* addOneTotoDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE07EB111E500F1F001FFD1B /* addOneTotoDo.swift */; };
 		BE07EB141E5042CB001FFD1B /* delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE07EB131E5042CB001FFD1B /* delegates.swift */; };
+		BE3795291E57656D007602C9 /* editView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3795281E57656D007602C9 /* editView.swift */; };
+		BE37952B1E5771AE007602C9 /* editDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE37952A1E5771AE007602C9 /* editDetailView.swift */; };
+		BE37952D1E5779A2007602C9 /* editDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE37952C1E5779A2007602C9 /* editDateView.swift */; };
+		BE37952F1E5779FD007602C9 /* editTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE37952E1E5779FD007602C9 /* editTimeView.swift */; };
 		BE53F7291E4F2A280044E5B1 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE53F7271E4F2A230044E5B1 /* Material.framework */; };
 		BE53F72A1E4F2A280044E5B1 /* Material.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE53F7271E4F2A230044E5B1 /* Material.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE53F7331E4F517E0044E5B1 /* editCountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53F7321E4F517E0044E5B1 /* editCountDownViewController.swift */; };
 		BE5A9BC51E39E28C00A44A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */; };
 		BE5A9BCA1E39E28C00A44A1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5A9BC81E39E28C00A44A1C /* Main.storyboard */; };
 		BE5A9BCD1E39E28C00A44A1C /* planDog_2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BCB1E39E28C00A44A1C /* planDog_2.xcdatamodeld */; };
@@ -48,8 +51,11 @@
 /* Begin PBXFileReference section */
 		BE07EB111E500F1F001FFD1B /* addOneTotoDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addOneTotoDo.swift; sourceTree = "<group>"; };
 		BE07EB131E5042CB001FFD1B /* delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = delegates.swift; sourceTree = "<group>"; };
+		BE3795281E57656D007602C9 /* editView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editView.swift; sourceTree = "<group>"; };
+		BE37952A1E5771AE007602C9 /* editDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDetailView.swift; sourceTree = "<group>"; };
+		BE37952C1E5779A2007602C9 /* editDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDateView.swift; sourceTree = "<group>"; };
+		BE37952E1E5779FD007602C9 /* editTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editTimeView.swift; sourceTree = "<group>"; };
 		BE53F7271E4F2A230044E5B1 /* Material.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Material.framework; path = Carthage/Build/iOS/Material.framework; sourceTree = "<group>"; };
-		BE53F7321E4F517E0044E5B1 /* editCountDownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editCountDownViewController.swift; sourceTree = "<group>"; };
 		BE5A9BC11E39E28C00A44A1C /* planDog_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = planDog_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE5A9BC91E39E28C00A44A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,10 +147,13 @@
 				BE5A9BDC1E39E2E800A44A1C /* countDown.swift */,
 				BE5A9BDD1E39E2E800A44A1C /* addOneToCountDown.swift */,
 				BE5A9C931E3C449D00A44A1C /* countDownDetailView.swift */,
-				BE53F7321E4F517E0044E5B1 /* editCountDownViewController.swift */,
 				BEEC187E1E560CC300FE008A /* addDetailView.swift */,
 				BEEC18801E560D7100FE008A /* addDateView.swift */,
 				BEEC18821E561C0800FE008A /* addTimeView.swift */,
+				BE3795281E57656D007602C9 /* editView.swift */,
+				BE37952A1E5771AE007602C9 /* editDetailView.swift */,
+				BE37952C1E5779A2007602C9 /* editDateView.swift */,
+				BE37952E1E5779FD007602C9 /* editTimeView.swift */,
 			);
 			name = countDown;
 			sourceTree = "<group>";
@@ -244,12 +253,15 @@
 				BE5A9BDF1E39E2E800A44A1C /* Tabbar.swift in Sources */,
 				BE5A9C941E3C449D00A44A1C /* countDownDetailView.swift in Sources */,
 				BE07EB121E500F1F001FFD1B /* addOneTotoDo.swift in Sources */,
-				BE53F7331E4F517E0044E5B1 /* editCountDownViewController.swift in Sources */,
+				BE3795291E57656D007602C9 /* editView.swift in Sources */,
 				BE5A9BE11E39E2E800A44A1C /* setting.swift in Sources */,
 				BE5A9BE01E39E2E800A44A1C /* todayinHistory.swift in Sources */,
 				BE5A9BE21E39E2E800A44A1C /* countDown.swift in Sources */,
+				BE37952D1E5779A2007602C9 /* editDateView.swift in Sources */,
 				BE5A9BCD1E39E28C00A44A1C /* planDog_2.xcdatamodeld in Sources */,
+				BE37952F1E5779FD007602C9 /* editTimeView.swift in Sources */,
 				BE5A9BC51E39E28C00A44A1C /* AppDelegate.swift in Sources */,
+				BE37952B1E5771AE007602C9 /* editDetailView.swift in Sources */,
 				BE07EB141E5042CB001FFD1B /* delegates.swift in Sources */,
 				BE5A9BE31E39E2E800A44A1C /* addOneToCountDown.swift in Sources */,
 				BE5A9BE41E39E2E800A44A1C /* homePage.swift in Sources */,

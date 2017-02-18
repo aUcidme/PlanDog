@@ -12,7 +12,7 @@ import CoreData
 
 class addDetailView: UIViewController, UITextFieldDelegate {
     
-    let addDetail = TextField(frame: CGRect(x: 10, y: UIScreen.main.bounds.height / 6, width: UIScreen.main.bounds.width - 20, height: 35))
+    let addDetail = TextField(frame: CGRect(x: 10, y: UIScreen.main.bounds.height / 6 + UIApplication.shared.statusBarFrame.size.height, width: UIScreen.main.bounds.width - 20, height: 35))
 
     var dPackage : stringPackage?
     

@@ -1,31 +1,32 @@
 //
-//  addDateView.swift
+//  editDateView.swift
 //  planDog_2
 //
-//  Created by cid aU on 2017/2/17.
+//  Created by cid aU on 2017/2/18.
 //  Copyright © 2017年 cid aU. All rights reserved.
 //
 
 import UIKit
 import Material
 
-class addDateView: UIViewController {
+class editDateView: UIViewController {
     
     let datePicker = UIDatePicker(frame: CGRect(x: 0, y: UIScreen.main.bounds.height / 3 * 2, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3))
     let dateLabel = UILabel(frame: CGRect(x: 10, y: UIScreen.main.bounds.height / 6 + UIApplication.shared.statusBarFrame.size.height, width: UIScreen.main.bounds.width - 20, height: 35))
-
-    var dPackage : datePackage?
+    
+    var dPackage : stringPackage?
     var nastyVar = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         prepareSelf()
         prepareDateLabel()
         prepareDatePicker()
-        prepareSaveButton()
+        prepareToolBar()
+        prepareStatusBar()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,9 +43,7 @@ class addDateView: UIViewController {
     fileprivate func prepareDateLabel () {
         let formatter = dateFormatter()
         
-        let date = Date()
-        
-        dateLabel.text = formatter.string(from: date)
+        dateLabel.text = formatter.string(from: datePicker.date)
         dateLabel.font = RobotoFont.regular(with: 25)
         view.addSubview(dateLabel)
     }
@@ -55,9 +54,35 @@ class addDateView: UIViewController {
         view.addSubview(datePicker)
     }
     
-    fileprivate func prepareSaveButton () {
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveAction))
-        self.navigationItem.rightBarButtonItem = saveButton
+    fileprivate func prepareStatusBar () {
+        let statusBarBackView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIApplication.shared.statusBarFrame.size.height))
+        statusBarBackView.backgroundColor = Color.blue.darken3
+        
+        view.addSubview(statusBarBackView)
+    }
+    
+    fileprivate func prepareToolBar () {
+        let toolBar = Toolbar(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.size.height, width: UIScreen.main.bounds.width, height: 35))
+        
+        let back = IconButton(image: Icon.cm.close, tintColor: .white)
+        back.pulseColor = .white
+        back.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
+        
+        let save = IconButton(image: Icon.cm.pen, tintColor: .white)
+        save.pulseColor = .white
+        save.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
+        
+        toolBar.backgroundColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
+        toolBar.leftViews = [back]
+        toolBar.rightViews = [save]
+        toolBar.title = "Count Down"
+        toolBar.detailLabel.text = "Detail"
+        
+        view.addSubview(toolBar)
+    }
+    
+    func dismissController () {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func dateFormatter () -> DateFormatter {
@@ -75,7 +100,7 @@ class addDateView: UIViewController {
         
         dateLabel.text = formatter.string(from: currentDate)
     }
-
+    
     func saveAction () {
         let errorFormatter = dateFormatter()
         
@@ -90,13 +115,8 @@ class addDateView: UIViewController {
             }
         }
         else {
-            let formatter = DateFormatter()
-            formatter.locale = Locale.current
-            formatter.dateFormat = "yyyyMMdd"
-            
-            let timeSet = formatter.date(from: formatter.string(from: datePicker.date))!
-            dPackage!(timeSet)
-            self.navigationController?.popViewController(animated: true)
+            dPackage!(dateLabel.text!)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

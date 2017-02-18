@@ -17,6 +17,8 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     public var items = [CountDownTo]()
     
+    public var editPackage : countDownPackage?
+    
     func jumpToAddTaskView(button : UIButton) {
         let editingPage = addOneToCountDown()
         
@@ -81,7 +83,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func specialFormatter () -> DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         return formatter
     }
@@ -313,10 +315,11 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             let currentDetail = self.items[indexPath.row].detail
             
-            let editingPage = editCountDownViewController()
-            editingPage.addDetail.text = self.items[indexPath.row].detail
-            editingPage.datePicker.date = self.items[indexPath.row].date as! Date
-            editingPage.dateLabel.text = formatter.string(from: self.items[indexPath.row].date as! Date)
+            let editingPage = editView()
+            editingPage.modalTransitionStyle = .flipHorizontal
+            editingPage.passedDate = self.items[indexPath.row].date as? Date
+            editingPage.passedString = self.items[indexPath.row].detail
+            
             self.present(editingPage, animated: true, completion: nil)
             
             
