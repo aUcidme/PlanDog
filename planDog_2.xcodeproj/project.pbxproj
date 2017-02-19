@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3084C79AAA836D89379AF9DE /* Pods_planDog_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AACCDC7A0176FF26336572 /* Pods_planDog_2.framework */; };
 		BE07EB121E500F1F001FFD1B /* addOneTotoDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE07EB111E500F1F001FFD1B /* addOneTotoDo.swift */; };
 		BE07EB141E5042CB001FFD1B /* delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE07EB131E5042CB001FFD1B /* delegates.swift */; };
 		BE3795291E57656D007602C9 /* editView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3795281E57656D007602C9 /* editView.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		43AACCDC7A0176FF26336572 /* Pods_planDog_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_planDog_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE07EB111E500F1F001FFD1B /* addOneTotoDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addOneTotoDo.swift; sourceTree = "<group>"; };
 		BE07EB131E5042CB001FFD1B /* delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = delegates.swift; sourceTree = "<group>"; };
 		BE3795281E57656D007602C9 /* editView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editView.swift; sourceTree = "<group>"; };
@@ -75,6 +77,8 @@
 		BEEC18821E561C0800FE008A /* addTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTimeView.swift; sourceTree = "<group>"; };
 		BEEF0D651E4EE90100BE9FAB /* versionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = versionViewController.swift; sourceTree = "<group>"; };
 		BEEF0D671E4EEC8B00BE9FAB /* aboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutUsViewController.swift; sourceTree = "<group>"; };
+		E8BAD03BEC7BD1D42E3F370D /* Pods-planDog_2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-planDog_2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-planDog_2/Pods-planDog_2.debug.xcconfig"; sourceTree = "<group>"; };
+		F0634E6AF1D6658E65118799 /* Pods-planDog_2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-planDog_2.release.xcconfig"; path = "Pods/Target Support Files/Pods-planDog_2/Pods-planDog_2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,16 +87,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE53F7291E4F2A280044E5B1 /* Material.framework in Frameworks */,
+				3084C79AAA836D89379AF9DE /* Pods_planDog_2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F22FB009651C92B1B8046AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8BAD03BEC7BD1D42E3F370D /* Pods-planDog_2.debug.xcconfig */,
+				F0634E6AF1D6658E65118799 /* Pods-planDog_2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BE53F7261E4F2A230044E5B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				BE53F7271E4F2A230044E5B1 /* Material.framework */,
+				43AACCDC7A0176FF26336572 /* Pods_planDog_2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,6 +127,7 @@
 				BE5A9BC31E39E28C00A44A1C /* planDog_2 */,
 				BE5A9BC21E39E28C00A44A1C /* Products */,
 				BE53F7261E4F2A230044E5B1 /* Frameworks */,
+				7F22FB009651C92B1B8046AB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,10 +200,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE5A9BD61E39E28C00A44A1C /* Build configuration list for PBXNativeTarget "planDog_2" */;
 			buildPhases = (
+				D594BAC64BD9A553FD05F538 /* [CP] Check Pods Manifest.lock */,
 				BE5A9BBD1E39E28C00A44A1C /* Sources */,
 				BE5A9BBE1E39E28C00A44A1C /* Frameworks */,
 				BE5A9BBF1E39E28C00A44A1C /* Resources */,
 				BE5A9C6E1E3A6F9100A44A1C /* Embed Frameworks */,
+				56E311667A5BE3EABCD576E5 /* [CP] Embed Pods Frameworks */,
+				F98959FD351729F99944BFBD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -244,6 +263,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56E311667A5BE3EABCD576E5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-planDog_2/Pods-planDog_2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D594BAC64BD9A553FD05F538 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F98959FD351729F99944BFBD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-planDog_2/Pods-planDog_2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE5A9BBD1E39E28C00A44A1C /* Sources */ = {
@@ -388,6 +455,7 @@
 		};
 		BE5A9BD71E39E28C00A44A1C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8BAD03BEC7BD1D42E3F370D /* Pods-planDog_2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
@@ -406,6 +474,7 @@
 		};
 		BE5A9BD81E39E28C00A44A1C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0634E6AF1D6658E65118799 /* Pods-planDog_2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";

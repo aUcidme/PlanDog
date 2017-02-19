@@ -33,14 +33,18 @@ class aboutUsViewController: UIViewController {
     
     fileprivate func prepareBioCard () {
         let label = UILabel(frame: view.bounds)
-        label.text = "Made by OurEDA"
+        label.text = "Made by aUcid in OurEDA"
         label.font = RobotoFont.light(with: 16)
         
-        let bioCard = ImageCard(frame: CGRect(x: 10, y: 10, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 3))
+        let bioCard = ImageCard(frame: CGRect(x: 10, y: 10, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 2))
         bioCard.shadowOffset = CGSize(width: 3, height: 3)
-        bioCard.imageView?.image = UIImage(named: "OurEDA Icon")
+        bioCard.imageView = UIImageView()
+        bioCard.imageView?.image = UIImage(named: "OurEDA Icon")?.resize(toWidth: view.width)
         bioCard.contentView = label
         
-        view.addSubview(bioCard)
+        let sView = UIScrollView(frame: view.bounds)
+        sView.isScrollEnabled = true
+        sView.addSubview(bioCard)
+        view.addSubview(sView)
     }
 }
