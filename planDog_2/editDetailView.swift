@@ -137,5 +137,4 @@ class editDetailView: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
 }

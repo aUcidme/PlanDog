@@ -94,12 +94,26 @@ class addOneToCountDown: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func saveAction () {
         let formatter = specialFormatter()
-        
-        let date = formatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)! + " " + (addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)! + ":00")
-        
-        let detail = addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text
-        cdPackage!(detail!, date!)
-        self.navigationController?.popViewController(animated: true)
+        let checkFormatter = dateFormatter()
+        if (addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text?.isEmpty)! {
+            reportError(reason: "You cannot save an empty project!")
+        }
+        else if (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text?.isEmpty)! {
+            reportError(reason: "You cannot save an empty project!")
+        }
+        else if (addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text?.isEmpty)! {
+            reportError(reason: "You cannot save an empty project!")
+        }
+        else if timeHasPassed(timeSet: checkFormatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)!)!) {
+            reportError(reason: "\(addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text!) has passed!")
+        }
+        else {
+            let date = formatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)! + " " + (addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)! + ":00")
+            
+            let detail = addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text
+            cdPackage!(detail!, date!)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     func dateFormatter () -> DateFormatter {
