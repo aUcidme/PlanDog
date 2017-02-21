@@ -49,23 +49,6 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         view.addSubview(addList)
     }
     
-    func searchCountDown (detail : String) -> CountDownTo? {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
-        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
-        
-        let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
-        return result?.first
-    }
-    
-    func checkDuplicate (detail : String) -> Bool {
-        return searchCountDown(detail: detail) != nil
-    }
-    
-    func getContext () -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-    
     func timeHasPassed (timeSet : Date) -> Bool {
         var timeSet = timeSet
         var currentTime = Date()
