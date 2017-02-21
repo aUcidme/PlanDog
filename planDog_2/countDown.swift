@@ -29,7 +29,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
             entity.add(detail: detail, date: date)
             let formtter = self.specialFormatter()
             self.formNotification(detail: detail, subtitle: formtter.string(from: date), date: date)
-            self.items = self.fetchAllData()
+            self.items = (CountDownTo()).fetchAll()
             self.countDownList.reloadData()
             
 //            self.addOneToObjects(detail: detail, date: date)
@@ -38,7 +38,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.items = self.fetchAllData()
+        self.items = (CountDownTo()).fetchAll()
         
         prepareSelf()
         prepareAddButton()
@@ -135,7 +135,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     func saveOneToObjects (detail : String, date : Date, currentDetail : String, indexPath : IndexPath) {
         let item = self.searchCountDown(detail: currentDetail)
         
-        if !(item?.checkAllDuplicate())! {
+        if !(item?.isNotDuplicateInAll())! {
             self.reportError(reason: "There is already an item has \(detail)")
         }
         else {
@@ -149,8 +149,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
                 print("error")
             }
             
-            self.items = self.fetchAllData()
-            
+            self.items = (CountDownTo()).fetchAll()
             self.countDownList.reloadData()
         }
     }
@@ -179,18 +178,10 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     }
     
     func refresh (refreshControl : UIRefreshControl) {
-        self.items = fetchAllData()
+        self.items = (CountDownTo()).fetchAll()
         self.countDownList.reloadData()
         
         refreshControl.endRefreshing()
-    }
-    
-    func fetchAllData () -> [CountDownTo] {
-        let context = getContext()
-        
-        let listagemCoreData = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
-        
-        return ((try? context.fetch(listagemCoreData)) as? [CountDownTo])!
     }
     
     func searchCountDown (detail : String) -> CountDownTo? {
@@ -281,17 +272,9 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         let deleteSwipeButton = UITableViewRowAction(style: .default, title: "Delete") {(action, indexPath) in
             let itemToDelete = self.items[indexPath.row]
             self.cancelNotification(detail: itemToDelete.detail!)
-            self.getContext().delete(itemToDelete)
+            itemToDelete.delete()
             
-            do {
-                try self.getContext().save()
-                print("saved")
-            } catch {
-                print("error")
-            }
-            
-            self.items = self.fetchAllData()
-            
+            self.items = (CountDownTo()).fetchAll()
             self.countDownList.deleteRows(at: [indexPath], with: .automatic)
         }
         

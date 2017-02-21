@@ -27,13 +27,14 @@
 		BE5A9BE31E39E2E800A44A1C /* addView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BDD1E39E2E800A44A1C /* addView.swift */; };
 		BE5A9BE41E39E2E800A44A1C /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BDE1E39E2E800A44A1C /* homePage.swift */; };
 		BE5A9C941E3C449D00A44A1C /* countDownDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9C931E3C449D00A44A1C /* countDownDetailView.swift */; };
+		BE9F39421E5CC20E007699A8 /* CountDownExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */; };
 		BED460511E50E8C500923FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED460501E50E8C500923FBD /* Assets.xcassets */; };
 		BEEC187F1E560CC300FE008A /* addDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC187E1E560CC300FE008A /* addDetailView.swift */; };
 		BEEC18811E560D7100FE008A /* addDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC18801E560D7100FE008A /* addDateView.swift */; };
 		BEEC18831E561C0800FE008A /* addTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC18821E561C0800FE008A /* addTimeView.swift */; };
 		BEEF0D661E4EE90100BE9FAB /* versionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0D651E4EE90100BE9FAB /* versionViewController.swift */; };
 		BEEF0D681E4EEC8B00BE9FAB /* aboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0D671E4EEC8B00BE9FAB /* aboutUsViewController.swift */; };
-		BEF5FB1A1E5BEC4C000A7653 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5FB191E5BEC4C000A7653 /* extension.swift */; };
+		BEF5FB1A1E5BEC4C000A7653 /* ToDoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */; };
 		BEF5FB1C1E5BFFB9000A7653 /* backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5FB1B1E5BFFB9000A7653 /* backup.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,13 +74,14 @@
 		BE5A9BDD1E39E2E800A44A1C /* addView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addView.swift; sourceTree = "<group>"; };
 		BE5A9BDE1E39E2E800A44A1C /* homePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homePage.swift; sourceTree = "<group>"; };
 		BE5A9C931E3C449D00A44A1C /* countDownDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countDownDetailView.swift; sourceTree = "<group>"; };
+		BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownExtension.swift; sourceTree = "<group>"; };
 		BED460501E50E8C500923FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEEC187E1E560CC300FE008A /* addDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addDetailView.swift; sourceTree = "<group>"; };
 		BEEC18801E560D7100FE008A /* addDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addDateView.swift; sourceTree = "<group>"; };
 		BEEC18821E561C0800FE008A /* addTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTimeView.swift; sourceTree = "<group>"; };
 		BEEF0D651E4EE90100BE9FAB /* versionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = versionViewController.swift; sourceTree = "<group>"; };
 		BEEF0D671E4EEC8B00BE9FAB /* aboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutUsViewController.swift; sourceTree = "<group>"; };
-		BEF5FB191E5BEC4C000A7653 /* extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
+		BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoExtension.swift; sourceTree = "<group>"; };
 		BEF5FB1B1E5BFFB9000A7653 /* backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup.swift; sourceTree = "<group>"; };
 		E8BAD03BEC7BD1D42E3F370D /* Pods-planDog_2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-planDog_2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-planDog_2/Pods-planDog_2.debug.xcconfig"; sourceTree = "<group>"; };
 		F0634E6AF1D6658E65118799 /* Pods-planDog_2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-planDog_2.release.xcconfig"; path = "Pods/Target Support Files/Pods-planDog_2/Pods-planDog_2.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,7 +150,8 @@
 			children = (
 				BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */,
 				BE07EB131E5042CB001FFD1B /* delegates.swift */,
-				BEF5FB191E5BEC4C000A7653 /* extension.swift */,
+				BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */,
+				BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */,
 				BEF5FB1B1E5BFFB9000A7653 /* backup.swift */,
 				BEEF0D641E4EE8E400BE9FAB /* setting */,
 				BE5A9BE61E3A64FD00A44A1C /* complicateThings */,
@@ -339,12 +342,13 @@
 				BE07EB141E5042CB001FFD1B /* delegates.swift in Sources */,
 				BE5A9BE31E39E2E800A44A1C /* addView.swift in Sources */,
 				BE5A9BE41E39E2E800A44A1C /* homePage.swift in Sources */,
-				BEF5FB1A1E5BEC4C000A7653 /* extension.swift in Sources */,
+				BEF5FB1A1E5BEC4C000A7653 /* ToDoExtension.swift in Sources */,
 				BEEF0D681E4EEC8B00BE9FAB /* aboutUsViewController.swift in Sources */,
 				BEEC18831E561C0800FE008A /* addTimeView.swift in Sources */,
 				BEEC187F1E560CC300FE008A /* addDetailView.swift in Sources */,
 				BEEC18811E560D7100FE008A /* addDateView.swift in Sources */,
 				BEEF0D661E4EE90100BE9FAB /* versionViewController.swift in Sources */,
+				BE9F39421E5CC20E007699A8 /* CountDownExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
