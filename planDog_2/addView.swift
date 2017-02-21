@@ -76,7 +76,7 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         currentTime = formatter.date(from: formatter.string(from: currentTime))!
         timeSet = formatter.date(from: formatter.string(from: timeSet))!
         
-        if timeSet.timeIntervalSince(currentTime) < 0 {
+        if timeSet.timeIntervalSince(currentTime) <= 0 {
             return true
         }
         return false
@@ -105,7 +105,7 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             reportError(reason: "You cannot save an empty project!")
         }
         else if timeHasPassed(timeSet: checkFormatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)!)!) {
-            reportError(reason: "\(addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text!) has passed!")
+            reportError(reason: "\((addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text!)!) has passed!")
         }
         else {
             let date = formatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)! + " " + (addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)! + ":00")

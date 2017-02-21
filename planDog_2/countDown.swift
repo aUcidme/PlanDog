@@ -31,8 +31,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
             self.formNotification(detail: detail, subtitle: formtter.string(from: date), date: date)
             self.items = (CountDownTo()).fetchAll()
             self.countDownList.reloadData()
-            
-//            self.addOneToObjects(detail: detail, date: date)
         }
     }
     
