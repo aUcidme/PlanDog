@@ -58,7 +58,7 @@ class addDetailView: UIViewController, UITextFieldDelegate {
         if (addDetail.text?.isEmpty)! {
             reportError(reason: "Detail cannot be empty!")
         }
-        else if (checkDuplicate(detail: addDetail.text!)) {
+        else if ((CountDownTo()).isDuplicate(detail: addDetail.text!)) {
             reportError(reason: "There is already an item has \(addDetail.text!)")
         }
         else {
@@ -66,24 +66,7 @@ class addDetailView: UIViewController, UITextFieldDelegate {
             self.navigationController?.popViewController(animated: true)
         }
     }
-    
-    func searchCountDown (detail : String) -> CountDownTo? {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
-        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
-        
-        let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
-        return result?.first
-    }
-    
-    func checkDuplicate (detail : String) -> Bool {
-        return searchCountDown(detail: detail) != nil
-    }
-    
-    func getContext () -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-    
+
     func reportError (reason : String) {
         let errorReporter = UIAlertController(title: "Cannot Save", message: "\(reason)", preferredStyle: .alert)
         

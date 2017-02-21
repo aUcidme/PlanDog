@@ -79,7 +79,7 @@ class addDateView: UIViewController {
     func saveAction () {
         let errorFormatter = dateFormatter()
         
-        if timeHasPassed(timeSet: datePicker.date) {
+        if datePicker.date.dateIsPassed() {
             if nastyVar == 2 {
                 reportError(reason: "What's the matter with you, bitch?")
                 nastyVar = 0
@@ -98,22 +98,6 @@ class addDateView: UIViewController {
             dPackage!(timeSet)
             self.navigationController?.popViewController(animated: true)
         }
-    }
-    
-    func timeHasPassed (timeSet : Date) -> Bool {
-        var timeSet = timeSet
-        var currentTime = Date()
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyyMMdd"
-        
-        currentTime = formatter.date(from: formatter.string(from: currentTime))!
-        timeSet = formatter.date(from: formatter.string(from: timeSet))!
-        
-        if timeSet.timeIntervalSince(currentTime) < 0 {
-            return true
-        }
-        return false
     }
     
     func reportError (reason : String) {

@@ -48,22 +48,6 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         addList.delegate = self
         view.addSubview(addList)
     }
-    
-    func timeHasPassed (timeSet : Date) -> Bool {
-        var timeSet = timeSet
-        var currentTime = Date()
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyyMMdd"
-        
-        currentTime = formatter.date(from: formatter.string(from: currentTime))!
-        timeSet = formatter.date(from: formatter.string(from: timeSet))!
-        
-        if timeSet.timeIntervalSince(currentTime) <= 0 {
-            return true
-        }
-        return false
-    }
 
     func reportError (reason : String) {
         let errorReporter = UIAlertController(title: "Cannot Save", message: "\(reason)", preferredStyle: .alert)
@@ -87,7 +71,7 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         else if (addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text?.isEmpty)! {
             reportError(reason: "You cannot save an empty project!")
         }
-        else if timeHasPassed(timeSet: checkFormatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)!)!) {
+        else if checkFormatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)!)!.dateIsPassed() {
             reportError(reason: "\((addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text!)!) has passed!")
         }
         else {

@@ -28,6 +28,7 @@
 		BE5A9BE41E39E2E800A44A1C /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BDE1E39E2E800A44A1C /* homePage.swift */; };
 		BE5A9C941E3C449D00A44A1C /* countDownDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9C931E3C449D00A44A1C /* countDownDetailView.swift */; };
 		BE9F39421E5CC20E007699A8 /* CountDownExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */; };
+		BE9F39441E5CCF3B007699A8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F39431E5CCF3B007699A8 /* DateExtension.swift */; };
 		BED460511E50E8C500923FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED460501E50E8C500923FBD /* Assets.xcassets */; };
 		BEEC187F1E560CC300FE008A /* addDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC187E1E560CC300FE008A /* addDetailView.swift */; };
 		BEEC18811E560D7100FE008A /* addDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC18801E560D7100FE008A /* addDateView.swift */; };
@@ -75,6 +76,7 @@
 		BE5A9BDE1E39E2E800A44A1C /* homePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homePage.swift; sourceTree = "<group>"; };
 		BE5A9C931E3C449D00A44A1C /* countDownDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countDownDetailView.swift; sourceTree = "<group>"; };
 		BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownExtension.swift; sourceTree = "<group>"; };
+		BE9F39431E5CCF3B007699A8 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		BED460501E50E8C500923FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEEC187E1E560CC300FE008A /* addDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addDetailView.swift; sourceTree = "<group>"; };
 		BEEC18801E560D7100FE008A /* addDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addDateView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				BE07EB131E5042CB001FFD1B /* delegates.swift */,
 				BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */,
 				BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */,
+				BE9F39431E5CCF3B007699A8 /* DateExtension.swift */,
 				BEF5FB1B1E5BFFB9000A7653 /* backup.swift */,
 				BEEF0D641E4EE8E400BE9FAB /* setting */,
 				BE5A9BE61E3A64FD00A44A1C /* complicateThings */,
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE5A9BDF1E39E2E800A44A1C /* Tabbar.swift in Sources */,
+				BE9F39441E5CCF3B007699A8 /* DateExtension.swift in Sources */,
 				BE5A9C941E3C449D00A44A1C /* countDownDetailView.swift in Sources */,
 				BE07EB121E500F1F001FFD1B /* addOneTotoDo.swift in Sources */,
 				BE3795291E57656D007602C9 /* editView.swift in Sources */,

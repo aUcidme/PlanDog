@@ -61,5 +61,17 @@ extension CountDownTo {
         let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
         return (result)!
     }
+    
+    func searchCountDown (detail : String) -> CountDownTo? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
+        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
+        
+        let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
+        return result?.first
+    }
+    
+    func isDuplicate (detail : String) -> Bool {
+        return searchCountDown(detail: detail) != nil
+    }
 }
 
