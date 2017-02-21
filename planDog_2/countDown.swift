@@ -21,17 +21,24 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     public var editPackage : countDownPackage?
     
     func jumpToAddTaskView(button : UIButton) {
-        let editingPage = addOneToCountDown()
+        let editingPage = addView()
         
         self.navigationController?.pushViewController(editingPage, animated: true)
         editingPage.cdPackage = { (detail, date) in
-            self.addOneToObjects(detail: detail, date: date)
+            let entity = NSEntityDescription.insertNewObject(forEntityName: "CountDownTo", into: self.getContext()) as! CountDownTo
+            entity.add(detail: detail, date: date)
+            let formtter = self.specialFormatter()
+            self.formNotification(detail: detail, subtitle: formtter.string(from: date), date: date)
+            self.items = self.fetchAllData()
+            self.countDownList.reloadData()
+            
+//            self.addOneToObjects(detail: detail, date: date)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        items = fetchAllData()
+        self.items = self.fetchAllData()
         
         prepareSelf()
         prepareAddButton()
@@ -124,26 +131,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     func cancelNotification (detail : String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [detail])
     }
-    
-    func addOneToObjects (detail : String, date : Date) {
-        let context = getContext()
-        let entity = NSEntityDescription.insertNewObject(forEntityName: "CountDownTo", into: context) as! CountDownTo
-        
-        entity.date = date as NSDate?
-        entity.detail = detail
-        
-        do {
-            try context.save()
-            print("saved")
-        } catch {
-            print("error")
-        }
-        let formtter = specialFormatter()
-        formNotification(detail: detail, subtitle: formtter.string(from: date), date: date)
-        items = fetchAllData()
-        countDownList.reloadData()
-    }
-    
+
     func saveOneToObjects (detail : String, date : Date, currentDetail : String, indexPath : IndexPath) {
         if !self.checkAllDuplicate(detail: detail) {
             self.reportError(reason: "There is already an item has \(detail)")
@@ -206,7 +194,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         return ((try? context.fetch(listagemCoreData)) as? [CountDownTo])!
     }
     
-    
     func checkAllDuplicate (detail : String) -> Bool {
         let allItems = searchAllCountDown(detail: detail)
         var iCoun = 0
@@ -257,7 +244,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "countDownID")
         cell.textLabel?.text = items[indexPath.row].detail
-        cell.detailTextLabel?.text = "To：\(formatter.string(from : items[indexPath.row].date! as Date))"
+        cell.detailTextLabel?.text = "To：\(formatter.string(from: items[indexPath.row].date as! Date))"
         cell.detailTextLabel?.font = RobotoFont.light(with: 12)
         
         let timeStillHave = UILabel(frame: CGRect(x: UIScreen.main.bounds.width / 5 * 4 - 50, y: 0, width: UIScreen.main.bounds.width / 5 + 50, height: 60))
@@ -341,7 +328,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
             editingPage.passedString = self.items[indexPath.row].detail
             
             self.present(editingPage, animated: true, completion: nil)
-            
             
             editingPage.cdPackage = { (detail, date) in
                 self.saveOneToObjects(detail: detail, date: date, currentDetail: currentDetail!, indexPath: indexPath)

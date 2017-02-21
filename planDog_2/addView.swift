@@ -10,7 +10,7 @@ import UIKit
 import Material
 import CoreData
 
-class addOneToCountDown: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let addList = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: .grouped)
     

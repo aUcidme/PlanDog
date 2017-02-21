@@ -100,7 +100,8 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.alertError(title: "Cannot save", detail: "There is already an item about \(passedValue)")
         }
         else {
-            self.saveToDo(detail: passedValue)
+            let item = NSEntityDescription.insertNewObject(forEntityName: "ThingToDo", into: self.getContext()) as! ThingToDo
+            item.add(detail: passedValue)
             self.todoListTable.reloadData()
         }
     }
@@ -116,19 +117,6 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let listagemCoreData = NSFetchRequest<NSFetchRequestResult>(entityName: "ThingToDo")
         
         return ((try? context.fetch(listagemCoreData)) as? [ThingToDo])!
-    }
-    
-    func saveToDo (detail : String) {
-        let context = getContext()
-        let newTask = NSEntityDescription.insertNewObject(forEntityName: "ThingToDo", into: context) as! ThingToDo
-        newTask.detail = detail
-        items.append(newTask)
-        do {
-            try context.save()
-            print("saved")
-        } catch {
-            print("error")
-        }
     }
     
     func searchToDo (detail : String) -> ThingToDo? {

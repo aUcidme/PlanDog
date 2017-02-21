@@ -90,9 +90,16 @@ class countDownDetailView: UIViewController, PassValueDelegate {
     }
     
     func calculateDate (date : Date) -> String {
-        let currentDate = Date()
+        var currentDate = Date()
+        var setDate = date
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "yyyyMMdd"
         
-        let numberOfDay = date.timeIntervalSince(currentDate)
+        setDate = formatter.date(from: formatter.string(from: setDate))!
+        currentDate = formatter.date(from: formatter.string(from: currentDate))!
+        
+        let numberOfDay = setDate.timeIntervalSince(currentDate)
         let intNumberOfDay = Int(numberOfDay / 24 / 60 / 60)
         
         if intNumberOfDay > 0 {
