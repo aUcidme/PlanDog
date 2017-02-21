@@ -42,3 +42,22 @@ import Foundation
 //    }
 //
 
+//    func checkAllDuplicate (detail : String) -> Bool {
+//        let allItems = searchAllCountDown(detail: detail)
+//        var iCoun = 0
+//        for item in allItems {
+//            if item.detail == detail {
+//                iCoun += 1
+//            }
+//        }
+//        return iCoun == 0 || iCoun == 1
+//    }
+
+//func searchAllCountDown (detail : String) -> [CountDownTo] {
+//    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
+//    fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
+//    
+//    let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
+//    return (result)!
+//}
+//    

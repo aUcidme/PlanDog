@@ -133,18 +133,17 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     }
 
     func saveOneToObjects (detail : String, date : Date, currentDetail : String, indexPath : IndexPath) {
-        if !self.checkAllDuplicate(detail: detail) {
+        let item = self.searchCountDown(detail: currentDetail)
+        
+        if !(item?.checkAllDuplicate())! {
             self.reportError(reason: "There is already an item has \(detail)")
         }
         else {
-            let context = getContext()
-            
-            let item = self.searchCountDown(detail: currentDetail)
             item?.date = date as NSDate?
             item?.detail = detail
             
             do {
-                try context.save()
+                try getContext().save()
                 print("saved")
             } catch {
                 print("error")
@@ -194,17 +193,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         return ((try? context.fetch(listagemCoreData)) as? [CountDownTo])!
     }
     
-    func checkAllDuplicate (detail : String) -> Bool {
-        let allItems = searchAllCountDown(detail: detail)
-        var iCoun = 0
-        for item in allItems {
-            if item.detail == detail {
-                iCoun += 1
-            }
-        }
-        return iCoun == 0 || iCoun == 1
-    }
-    
     func searchCountDown (detail : String) -> CountDownTo? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
         fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
@@ -213,14 +201,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         return result?.first
     }
 
-    func searchAllCountDown (detail : String) -> [CountDownTo] {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
-        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
-        
-        let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
-        return (result)!
-    }
-    
     func reportError (reason : String) {
         let errorReporter = UIAlertController(title: "Cannot Save", message: "\(reason)", preferredStyle: .alert)
         

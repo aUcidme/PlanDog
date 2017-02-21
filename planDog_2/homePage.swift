@@ -18,7 +18,7 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        items = fetchCoreData()
+        items = (ThingToDo()).fetchAll()//fetchCoreData()
         
         prepareSelf()
         prepareToDoListTable()
@@ -93,15 +93,16 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func saveString (passedValue : String) {
+        let item = NSEntityDescription.insertNewObject(forEntityName: "ThingToDo", into: self.getContext()) as! ThingToDo
         if passedValue.isEmpty {
             self.alertError(title: "Cannot save", detail: "Detail cannot be empty!")
         }
-        else if self.checkDuplicate(detail: passedValue) {
+        else if item.isDuplicate() {
             self.alertError(title: "Cannot save", detail: "There is already an item about \(passedValue)")
         }
         else {
-            let item = NSEntityDescription.insertNewObject(forEntityName: "ThingToDo", into: self.getContext()) as! ThingToDo
             item.add(detail: passedValue)
+            items = (ThingToDo()).fetchAll()
             self.todoListTable.reloadData()
         }
     }
@@ -109,26 +110,6 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func getContext () -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
-    }
-
-    func fetchCoreData () -> [ThingToDo] {
-        let context = getContext()
-        
-        let listagemCoreData = NSFetchRequest<NSFetchRequestResult>(entityName: "ThingToDo")
-        
-        return ((try? context.fetch(listagemCoreData)) as? [ThingToDo])!
-    }
-    
-    func searchToDo (detail : String) -> ThingToDo? {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ThingToDo")
-        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
-        
-        let result = (try? getContext().fetch(fetchRequest)) as? [ThingToDo]
-        return result?.first
-    }
-    
-    func checkDuplicate (detail : String) -> Bool {
-        return searchToDo(detail: detail) != nil
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -172,20 +153,10 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     //Do nothing
                 }
                 else {
-                    let context = self.getContext()
+                    let item = (ThingToDo()).search(detail: currentDetail!)
+                    item?.edit(newDetail: newThingToDo!)
                     
-                    let item = self.searchToDo(detail: currentDetail!)
-                    item?.detail = newThingToDo
-                    
-                    do {
-                        try context.save()
-                        print("saved")
-                    } catch {
-                        print("error")
-                    }
-                    
-                    self.items = self.fetchCoreData()
-                    
+                    self.items = (ThingToDo()).fetchAll()
                     self.todoListTable.reloadData()
                 }
             })
@@ -206,18 +177,9 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let deleteSwipeButton = UITableViewRowAction(style: .default, title: "Delete") {(action, indexPath) in
             
             let itemToDelete = self.items[indexPath.row]
+            itemToDelete.delete()
             
-            self.getContext().delete(itemToDelete)
-            
-            do {
-                try self.getContext().save()
-                print("saved")
-            } catch {
-                print("error")
-            }
-            
-            self.items = self.fetchCoreData()
-            
+            self.items = (ThingToDo()).fetchAll()
             self.todoListTable.deleteRows(at: [indexPath], with: .automatic)
         }
         
