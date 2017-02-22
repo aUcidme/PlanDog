@@ -39,12 +39,10 @@ class addTimeView: UIViewController {
     }
     
     fileprivate func prepareTimeLabel () {
-        let formatter = timeFormatter()
-        
         let date = Date()
-        
-        timeLabel.text = formatter.string(from: date)
+        timeLabel.text = date.getTimeString()
         timeLabel.font = RobotoFont.regular(with: 25)
+        
         view.addSubview(timeLabel)
     }
     
@@ -59,14 +57,6 @@ class addTimeView: UIViewController {
         self.navigationItem.rightBarButtonItem = saveButton
     }
     
-    func timeFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "HH:mm"
-        
-        return formatter
-    }
-    
     func saveAction () {
         dPackage!(timePicker.date)
         self.navigationController?.popViewController(animated: true)
@@ -74,9 +64,6 @@ class addTimeView: UIViewController {
     
     func setLabelContent (picker : UIDatePicker) {
         let currentTime = picker.date
-        
-        let formatter = timeFormatter()
-        
-        timeLabel.text = formatter.string(from: currentTime)
+        timeLabel.text = currentTime.getTimeString()
     }
 }
