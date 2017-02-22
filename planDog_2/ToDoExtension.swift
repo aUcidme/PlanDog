@@ -61,7 +61,7 @@ extension ThingToDo {
         return ((try? getContext().fetch(listagemCoreData)) as? [ThingToDo])!
     }
     
-    func isDuplicate () -> Bool {
+    func isDuplicate () -> Bool { // 如果有重复，返回的会是 true
         return search(detail: self.detail!) != nil
     }
 }

@@ -83,14 +83,11 @@ class detailView: UIViewController, PassValueDelegate {
         if dateString != "Time's Up" {
             if Int(dateString)! > 1 {
                 return "Still have \(dateString) days."
-            }
-            else {
+            } else {
                 return "Still have \(dateString) day."
             }
-        }
-        else {
+        } else {
             return dateString
         }
     }
-    
 }

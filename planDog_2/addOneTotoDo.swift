@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import CoreData
 
 typealias textPackage = (String) -> Void
 
@@ -57,10 +58,27 @@ class addOneTotoDo: UIViewController, UITextFieldDelegate {
     }
     
     func saveAction () {
-        if stringPackage != nil && !(self.addDetail.text?.isEmpty)! {
-            stringPackage!(self.addDetail.text!)
+        let item = NSEntityDescription.insertNewObject(forEntityName: "ThingToDo", into: (ThingToDo()).getContext()) as! ThingToDo
+        item.detail = self.addDetail.text
+        if stringPackage == nil && item.detail!.isEmpty {
+            self.reportError(title: "Cannot save", detail: "Detail cannot be empty")
+        }
+        else if item.isDuplicate() {
+            self.reportError(title: "Cannot save", detail: "There is already a object has \(item.detail!)")
+        }
+        else {
+            stringPackage!(item.detail!)
+            item.delete()
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    func reportError (title : String, detail : String) {
+        let alertError = UIAlertController(title: title, message: detail, preferredStyle: .alert)
+        
+        let confirmButton = UIAlertAction(title: "Confirm", style: .default, handler: nil)
+        alertError.addAction(confirmButton)
+        self.present(alertError, animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
