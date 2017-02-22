@@ -24,4 +24,29 @@ extension Date {
         }
         return false
     }
+    
+    func getDateString () -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        return formatter.string(from: self)
+    }
+    
+    func getTimeString () -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "HH:mm"
+        
+        return formatter.string(from: self)
+    }
+    
+    func getSpecialString () -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        return formatter.string(from: self)
+    }
+    
 }

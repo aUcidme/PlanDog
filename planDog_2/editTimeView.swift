@@ -40,9 +40,7 @@ class editTimeView: UIViewController {
     }
     
     fileprivate func prepareTimeLabel () {
-        let formatter = timeFormatter()
-        
-        timeLabel.text = formatter.string(from: timePicker.date)
+        timeLabel.text = timePicker.date.getTimeString()
         timeLabel.font = RobotoFont.regular(with: 25)
         view.addSubview(timeLabel)
     }
@@ -84,14 +82,6 @@ class editTimeView: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func timeFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "HH:mm"
-        
-        return formatter
-    }
-    
     func saveAction () {
         dPackage!(timeLabel.text!)
         self.dismiss(animated: true, completion: nil)
@@ -99,9 +89,6 @@ class editTimeView: UIViewController {
     
     func setLabelContent (picker : UIDatePicker) {
         let currentTime = picker.date
-        
-        let formatter = timeFormatter()
-        
-        timeLabel.text = formatter.string(from: currentTime)
+        timeLabel.text = currentTime.getTimeString()
     }
 }

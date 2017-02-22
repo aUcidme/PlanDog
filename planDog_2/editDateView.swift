@@ -41,9 +41,7 @@ class editDateView: UIViewController {
     }
     
     fileprivate func prepareDateLabel () {
-        let formatter = dateFormatter()
-        
-        dateLabel.text = formatter.string(from: datePicker.date)
+        dateLabel.text = datePicker.date.getDateString()
         dateLabel.font = RobotoFont.regular(with: 25)
         view.addSubview(dateLabel)
     }
@@ -85,32 +83,19 @@ class editDateView: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func dateFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        return formatter
-    }
-    
     func setLabelContent (picker : UIDatePicker) {
         let currentDate = picker.date
-        
-        let formatter = dateFormatter()
-        
-        dateLabel.text = formatter.string(from: currentDate)
+        dateLabel.text = currentDate.getDateString()
     }
     
     func saveAction () {
-        let errorFormatter = dateFormatter()
-        
-        if timeHasPassed(timeSet: datePicker.date) {
+        if datePicker.date.dateIsPassed() {
             if nastyVar == 2 {
                 reportError(reason: "What's the matter with you, bitch?")
                 nastyVar = 0
             }
             else {
-                reportError(reason: "\(errorFormatter.string(from: datePicker.date)) is already passed")
+                reportError(reason: "\(datePicker.date.getDateString()) is already passed")
                 nastyVar += 1
             }
         }
@@ -118,22 +103,6 @@ class editDateView: UIViewController {
             dPackage!(dateLabel.text!)
             self.dismiss(animated: true, completion: nil)
         }
-    }
-    
-    func timeHasPassed (timeSet : Date) -> Bool {
-        var timeSet = timeSet
-        var currentTime = Date()
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyyMMdd"
-        
-        currentTime = formatter.date(from: formatter.string(from: currentTime))!
-        timeSet = formatter.date(from: formatter.string(from: timeSet))!
-        
-        if timeSet.timeIntervalSince(currentTime) < 0 {
-            return true
-        }
-        return false
     }
     
     func reportError (reason : String) {

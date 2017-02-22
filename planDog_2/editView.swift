@@ -93,37 +93,11 @@ class editView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func saveAction () {
-        let formatter = specialFormatter()
-        
-        let date = formatter.date(from: (editList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)! + " " + (editList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)! + ":00")
+        let date = ((editList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)! + " " + (editList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)! + ":00").getSpecialDate()
         
         let detail = editList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text
-        cdPackage!(detail!, date!)
+        cdPackage!(detail!, date)
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func dateFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        return formatter
-    }
-    
-    func timeFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "HH:mm"
-        
-        return formatter
-    }
-    
-    func specialFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        return formatter
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -143,13 +117,11 @@ class editView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             cell.imageView?.image = UIImage(named: "标题")
             cell.textLabel?.text = passedString
         case 1:
-            let formatter = dateFormatter()
             cell.imageView?.image = UIImage(named: "日期")
-            cell.textLabel?.text = formatter.string(from: passedDate!)
+            cell.textLabel?.text = passedDate?.getDateString()
         default:
-            let formatter = timeFormatter()
             cell.imageView?.image = UIImage(named: "时间")
-            cell.textLabel?.text = formatter.string(from: passedDate!)
+            cell.textLabel?.text = passedDate?.getTimeString()
         }
         return cell
     }

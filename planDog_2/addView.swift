@@ -60,51 +60,28 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func saveAction () {
-        let formatter = specialFormatter()
-        let checkFormatter = dateFormatter()
-        if (addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text?.isEmpty)! {
-            reportError(reason: "You cannot save an empty project!")
+        let detailString = addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text
+        let dateString = addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text
+        let timeString = addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text
+        
+        if (detailString?.isEmpty)! {
+            self.reportError(reason: "You cannot save an empty project!")
         }
-        else if (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text?.isEmpty)! {
-            reportError(reason: "You cannot save an empty project!")
+        else if (dateString?.isEmpty)! {
+            self.reportError(reason: "You cannot save an empty project!")
         }
-        else if (addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text?.isEmpty)! {
-            reportError(reason: "You cannot save an empty project!")
+        else if (timeString?.isEmpty)! {
+            self.reportError(reason: "You cannot save an empty project!")
         }
-        else if checkFormatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)!)!.dateIsPassed() {
-            reportError(reason: "\((addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text!)!) has passed!")
+        else if (dateString?.getDate().dateIsPassed())! {
+            self.reportError(reason: "\(dateString!) has passed!")
         }
         else {
-            let date = formatter.date(from: (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text)! + " " + (addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)! + ":00")
-            
-            let detail = addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text
-            cdPackage!(detail!, date!)
+            let date = (dateString! + " " + timeString! + ":00").getSpecialDate()
+            let detail = detailString!
+            cdPackage!(detail, date)
             self.navigationController?.popViewController(animated: true)
         }
-    }
-
-    func dateFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        return formatter
-    }
-    
-    func timeFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "HH:mm"
-        
-        return formatter
-    }
-    
-    func specialFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        return formatter
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -155,9 +132,7 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let dateView = addDateView()
             self.navigationController?.pushViewController(dateView, animated: true)
             dateView.dPackage = { (date) in
-                let formatter = self.dateFormatter()
-                
-                tableView.cellForRow(at: indexPath)?.textLabel?.text = formatter.string(from: date)
+                tableView.cellForRow(at: indexPath)?.textLabel?.text = date.getDateString()
             }
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -165,9 +140,7 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let timeView = addTimeView()
             self.navigationController?.pushViewController(timeView, animated: true)
             timeView.dPackage = { (time) in
-                let formatter = self.timeFormatter()
-                
-                tableView.cellForRow(at: indexPath)?.textLabel?.text = formatter.string(from: time)
+                tableView.cellForRow(at: indexPath)?.textLabel?.text = time.getTimeString()
             }
             tableView.deselectRow(at: indexPath, animated: true)
         }

@@ -40,11 +40,8 @@ class addDateView: UIViewController {
     }
     
     fileprivate func prepareDateLabel () {
-        let formatter = dateFormatter()
-        
         let date = Date()
-        
-        dateLabel.text = formatter.string(from: date)
+        dateLabel.text = date.getDateString()
         dateLabel.font = RobotoFont.regular(with: 25)
         view.addSubview(dateLabel)
     }
@@ -60,32 +57,19 @@ class addDateView: UIViewController {
         self.navigationItem.rightBarButtonItem = saveButton
     }
     
-    func dateFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        return formatter
-    }
-    
     func setLabelContent (picker : UIDatePicker) {
         let currentDate = picker.date
-        
-        let formatter = dateFormatter()
-        
-        dateLabel.text = formatter.string(from: currentDate)
+        dateLabel.text = currentDate.getDateString()
     }
 
     func saveAction () {
-        let errorFormatter = dateFormatter()
-        
         if datePicker.date.dateIsPassed() {
             if nastyVar == 2 {
                 reportError(reason: "What's the matter with you, bitch?")
                 nastyVar = 0
             }
             else {
-                reportError(reason: "\(errorFormatter.string(from: datePicker.date)) is already passed")
+                reportError(reason: "\(datePicker.date.getDateString()) is already passed")
                 nastyVar += 1
             }
         }

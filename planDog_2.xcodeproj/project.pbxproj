@@ -14,6 +14,7 @@
 		BE37952B1E5771AE007602C9 /* editDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE37952A1E5771AE007602C9 /* editDetailView.swift */; };
 		BE37952D1E5779A2007602C9 /* editDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE37952C1E5779A2007602C9 /* editDateView.swift */; };
 		BE37952F1E5779FD007602C9 /* editTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE37952E1E5779FD007602C9 /* editTimeView.swift */; };
+		BE4B9B521E5D797F00ACB9AC /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4B9B511E5D797F00ACB9AC /* StringExtension.swift */; };
 		BE53F7291E4F2A280044E5B1 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE53F7271E4F2A230044E5B1 /* Material.framework */; };
 		BE53F72A1E4F2A280044E5B1 /* Material.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE53F7271E4F2A230044E5B1 /* Material.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE5A9BC51E39E28C00A44A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		BE37952A1E5771AE007602C9 /* editDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDetailView.swift; sourceTree = "<group>"; };
 		BE37952C1E5779A2007602C9 /* editDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDateView.swift; sourceTree = "<group>"; };
 		BE37952E1E5779FD007602C9 /* editTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editTimeView.swift; sourceTree = "<group>"; };
+		BE4B9B511E5D797F00ACB9AC /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BE53F7271E4F2A230044E5B1 /* Material.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Material.framework; path = Carthage/Build/iOS/Material.framework; sourceTree = "<group>"; };
 		BE5A9BC11E39E28C00A44A1C /* planDog_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = planDog_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */,
 				BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */,
 				BE9F39431E5CCF3B007699A8 /* DateExtension.swift */,
+				BE4B9B511E5D797F00ACB9AC /* StringExtension.swift */,
 				BEF5FB1B1E5BFFB9000A7653 /* backup.swift */,
 				BEEF0D641E4EE8E400BE9FAB /* setting */,
 				BE5A9BE61E3A64FD00A44A1C /* complicateThings */,
@@ -336,6 +339,7 @@
 				BE3795291E57656D007602C9 /* editView.swift in Sources */,
 				BE5A9BE11E39E2E800A44A1C /* setting.swift in Sources */,
 				BE5A9BE01E39E2E800A44A1C /* todayinHistory.swift in Sources */,
+				BE4B9B521E5D797F00ACB9AC /* StringExtension.swift in Sources */,
 				BE5A9BE21E39E2E800A44A1C /* countDown.swift in Sources */,
 				BE37952D1E5779A2007602C9 /* editDateView.swift in Sources */,
 				BE5A9BCD1E39E28C00A44A1C /* planDog_2.xcdatamodeld in Sources */,
