@@ -25,6 +25,26 @@ extension Date {
         return false
     }
     
+    func calculateDayRemain () -> String {
+        var currentDate = Date()
+        var setDate = self
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        formatter.locale = Locale.current
+        currentDate = formatter.date(from: formatter.string(from: currentDate))!
+        setDate = formatter.date(from: formatter.string(from: setDate))!
+        
+        let numberOfDay = self.timeIntervalSince(currentDate)
+        let intNumberOfDay = Int(numberOfDay / 24 / 60 / 60)
+        
+        if intNumberOfDay != 0 {
+            return "\(intNumberOfDay)"
+        }
+        else {
+            return "Time's Up"
+        }
+    }
+    
     func getDateString () -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
@@ -48,5 +68,4 @@ extension Date {
         
         return formatter.string(from: self)
     }
-    
 }

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import Material
 
-class countDownDetailView: UIViewController, PassValueDelegate {
+class detailView: UIViewController, PassValueDelegate {
 
     public var indexRow : Int?
     public var detail : String?
@@ -45,25 +45,15 @@ class countDownDetailView: UIViewController, PassValueDelegate {
     }
     
     fileprivate func prepareLabel () {
-        let dateString = calculateDate(date: self.date!)
-        
         let detailLabel = UILabel(frame: CGRect(x: 10, y: UIScreen.main.bounds.height / 7, width: UIScreen.main.bounds.width - 20, height: 40))
+        detailLabel.font = RobotoFont.regular(with: 20)
         detailLabel.text = "\(self.detail!)"
         view.addSubview(detailLabel)
         
         let dateLabel = UILabel(frame: CGRect(x: UIScreen.main.bounds.width / 2 - 100, y: UIScreen.main.bounds.height / 7 + 60, width: 200, height: 70))
-        if dateString != "✅" {
-            if Int(dateString)! > 1 {
-                dateLabel.text = "Still have \(dateString) days."
-            }
-            else {
-                dateLabel.text = "Still have \(dateString) day."
-            }
-        }
-        else {
-            dateLabel.text = dateString
-        }
         dateLabel.textAlignment = NSTextAlignment.center
+        dateLabel.font = RobotoFont.thin(with: 18)
+        dateLabel.text = handleContent(dateString: (self.date?.calculateDayRemain())!)
         view.addSubview(dateLabel)
     }
     
@@ -89,24 +79,18 @@ class countDownDetailView: UIViewController, PassValueDelegate {
         view.addSubview(statusBarBackView)
     }
     
-    func calculateDate (date : Date) -> String {
-        var currentDate = Date()
-        var setDate = date
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyyMMdd"
-        
-        setDate = formatter.date(from: formatter.string(from: setDate))!
-        currentDate = formatter.date(from: formatter.string(from: currentDate))!
-        
-        let numberOfDay = setDate.timeIntervalSince(currentDate)
-        let intNumberOfDay = Int(numberOfDay / 24 / 60 / 60)
-        
-        if intNumberOfDay > 0 {
-            return "\(intNumberOfDay)"
+    func handleContent (dateString : String) -> String {
+        if dateString != "Time's Up" {
+            if Int(dateString)! > 1 {
+                return "Still have \(dateString) days."
+            }
+            else {
+                return "Still have \(dateString) day."
+            }
         }
         else {
-            return "✅"
+            return dateString
         }
     }
+    
 }

@@ -61,7 +61,7 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.navigationItem.leftBarButtonItem = edit
     }
     
-    func alertError (title : String, detail : String) {
+    func reportError (title : String, detail : String) {
         let alertError = UIAlertController(title: title, message: detail, preferredStyle: .alert)
         
         let confirmButton = UIAlertAction(title: "Confirm", style: .default, handler: nil)
@@ -71,7 +71,6 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func jumpToEditingPage () {
         let editingPage = addOneTotoDo()
-        
         self.navigationController?.pushViewController(editingPage, animated: true)
         
         editingPage.stringPackage = { value in
@@ -93,23 +92,18 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func saveString (passedValue : String) {
-        let item = NSEntityDescription.insertNewObject(forEntityName: "ThingToDo", into: self.getContext()) as! ThingToDo
+        let item = NSEntityDescription.insertNewObject(forEntityName: "ThingToDo", into: (ThingToDo()).getContext()) as! ThingToDo
         if passedValue.isEmpty {
-            self.alertError(title: "Cannot save", detail: "Detail cannot be empty!")
+            self.reportError(title: "Cannot save", detail: "Detail cannot be empty!")
         }
         else if item.isDuplicate() {
-            self.alertError(title: "Cannot save", detail: "There is already an item about \(passedValue)")
+            self.reportError(title: "Cannot save", detail: "There is already an item about \(passedValue)")
         }
         else {
             item.add(detail: passedValue)
             items = (ThingToDo()).fetchAll()
             self.todoListTable.reloadData()
         }
-    }
-    
-    func getContext () -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -147,7 +141,7 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let newThingToDo = editAlert.textFields?.first?.text!
                 
                 if (newThingToDo?.isEmpty)! {
-                    self.alertError(title: "Cannot save", detail: "New item is empty")
+                    self.reportError(title: "Cannot save", detail: "New item is empty")
                 }
                 else if newThingToDo == currentDetail {
                     //Do nothing

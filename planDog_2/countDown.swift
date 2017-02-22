@@ -25,10 +25,9 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         
         self.navigationController?.pushViewController(editingPage, animated: true)
         editingPage.cdPackage = { (detail, date) in
-            let entity = NSEntityDescription.insertNewObject(forEntityName: "CountDownTo", into: self.getContext()) as! CountDownTo
-            entity.add(detail: detail, date: date)
-            let formtter = self.specialFormatter()
-            self.formNotification(detail: detail, subtitle: formtter.string(from: date), date: date)
+            let item = NSEntityDescription.insertNewObject(forEntityName: "CountDownTo", into: (CountDownTo()).getContext()) as! CountDownTo
+            item.add(detail: detail, date: date)
+            self.formNotification(detail: detail, subtitle: date.getSpecialString(), date: date)
             self.items = (CountDownTo()).fetchAll()
             self.countDownList.reloadData()
         }
@@ -86,14 +85,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         self.navigationItem.leftBarButtonItem = edit
     }
     
-    func specialFormatter () -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        
-        return formatter
-    }
-    
     func switchToEditMode (button : UIBarButtonItem) {
         if button.tag == 100 {
             button.tag = 200
@@ -131,9 +122,9 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     }
 
     func saveOneToObjects (detail : String, date : Date, currentDetail : String, indexPath : IndexPath) {
-        let item = self.searchCountDown(detail: currentDetail)
+        let item = (CountDownTo()).searchCountDown(detail: currentDetail)
         
-        if !(item?.isNotDuplicateInAll())! {
+        if (item?.isDuplicateInAll())! {
             self.reportError(reason: "There is already an item has \(detail)")
         }
         else {
@@ -141,7 +132,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
             item?.detail = detail
             
             do {
-                try getContext().save()
+                try (CountDownTo()).getContext().save()
                 print("saved")
             } catch {
                 print("error")
@@ -152,29 +143,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         }
     }
     
-    func calculateDate (date : Date) -> String {
-        var currentDate = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        formatter.locale = Locale.current
-        currentDate = formatter.date(from: formatter.string(from: currentDate))!
-        
-        let numberOfDay = date.timeIntervalSince(currentDate)
-        let intNumberOfDay = Int(numberOfDay / 24 / 60 / 60)
-        
-        if intNumberOfDay != 0 {
-            return "\(intNumberOfDay)"
-        }
-        else {
-            return "✅"
-        }
-    }
-    
-    func getContext() -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-    
     func refresh (refreshControl : UIRefreshControl) {
         self.items = (CountDownTo()).fetchAll()
         self.countDownList.reloadData()
@@ -182,14 +150,6 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         refreshControl.endRefreshing()
     }
     
-    func searchCountDown (detail : String) -> CountDownTo? {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
-        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
-        
-        let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
-        return result?.first
-    }
-
     func reportError (reason : String) {
         let errorReporter = UIAlertController(title: "Cannot Save", message: "\(reason)", preferredStyle: .alert)
         
@@ -198,6 +158,20 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         errorReporter.addAction(confirmButton)
         
         self.present(errorReporter, animated: true, completion: nil)
+    }
+    
+    func handleContent (dateString : String) -> String {
+        if dateString != "Time's Up" {
+            if Int(dateString)! > 1 {
+                return "days"
+            }
+            else {
+                return "day"
+            }
+        }
+        else {
+            return "Done"
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -209,16 +183,14 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let formatter = specialFormatter()
-        
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "countDownID")
         cell.textLabel?.text = items[indexPath.row].detail
-        cell.detailTextLabel?.text = "To：\(formatter.string(from: items[indexPath.row].date as! Date))"
+        cell.detailTextLabel?.text = "To：\((items[indexPath.row].date as! Date).getSpecialString())"
         cell.detailTextLabel?.font = RobotoFont.light(with: 12)
         
         let timeStillHave = UILabel(frame: CGRect(x: UIScreen.main.bounds.width / 5 * 4 - 50, y: 0, width: UIScreen.main.bounds.width / 5 + 50, height: 60))
         timeStillHave.font = RobotoFont.regular(with: 35)
-        timeStillHave.text = calculateDate(date: items[indexPath.row].date as! Date)
+        timeStillHave.text = (items[indexPath.row].date as! Date).calculateDayRemain()
         timeStillHave.textAlignment = NSTextAlignment.center
         timeStillHave.textColor = UIColor.black
         timeStillHave.numberOfLines = 0
@@ -228,22 +200,8 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         dayString.font = RobotoFont.thin(with: 13)
         dayString.textAlignment = NSTextAlignment.center
         dayString.textColor = .black
-
-        if timeStillHave.text != "✅" {
-            if Int(timeStillHave.text!)! > 1 {
-                dayString.text = "days"
-                cell.addSubview(dayString)
-            }
-            else {
-                dayString.text = "day"
-                cell.addSubview(dayString)
-            }
-        }
-        else {
-            dayString.text = "Done"
-            cell.addSubview(dayString)
-        }
-        
+        dayString.text = handleContent(dateString: timeStillHave.text!)
+        cell.addSubview(dayString)
         return cell
     }
     
@@ -256,13 +214,13 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailView = countDownDetailView()
-        detailView.indexRow = indexPath.row
-        detailView.detail = items[indexPath.row].detail
-        detailView.date = items[indexPath.row].date as Date?
+        let View = detailView()
+        View.indexRow = indexPath.row
+        View.detail = items[indexPath.row].detail
+        View.date = items[indexPath.row].date as Date?
         
-        detailView.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-        self.present(detailView, animated: true, completion: nil)
+        View.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        self.present(View, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

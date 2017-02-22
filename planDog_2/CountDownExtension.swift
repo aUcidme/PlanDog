@@ -43,7 +43,7 @@ extension CountDownTo {
         return ((try? getContext().fetch(listagemCoreData)) as? [CountDownTo])!
     }
     
-    func isNotDuplicateInAll () -> Bool {
+    func isDuplicateInAll () -> Bool {
         let allItems = searchAll(detail: detail!)
         var iCoun = 0
         for item in allItems {

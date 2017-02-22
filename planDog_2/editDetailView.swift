@@ -84,45 +84,25 @@ class editDetailView: UIViewController, UITextFieldDelegate {
     }
     
     func saveAction () {
-        if (editDetail.text?.isEmpty)! {
-            reportError(reason: "Detail cannot be empty!")
+        let item = NSEntityDescription.insertNewObject(forEntityName: "CountDownTo", into: (CountDownTo()).getContext()) as! CountDownTo
+        item.detail = editDetail.text
+        
+        if (item.detail?.isEmpty)! {
+            self.reportError(reason: "Detail cannot be empty!")
         }
-        else if editDetail.text == passedString {
-            reportError(reason: "You didn't edit anything!")
+        else if item.detail == passedString {
+            self.reportError(reason: "You didn't edit anything!")
         }
-        else if (!checkAllDuplicate(detail: editDetail.text!)) {
-            reportError(reason: "There is already an item has \(editDetail.text!)")
+        else if item.isDuplicateInAll() {
+            self.reportError(reason: "There is already an item has \(editDetail.text!)")
         }
         else {
+            item.delete()
             dPackage!(editDetail.text!)
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
-    func checkAllDuplicate (detail : String) -> Bool {
-        let allItems = searchAllCountDown(detail: detail)
-        var iCoun = 0
-        for item in allItems {
-            if item.detail == detail {
-                iCoun += 1
-            }
-        }
-        return iCoun == 0 || iCoun == 1
-    }
-    
-    func searchAllCountDown (detail : String) -> [CountDownTo] {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
-        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
-        
-        let result = (try? getContext().fetch(fetchRequest)) as? [CountDownTo]
-        return (result)!
-    }
-    
-    func getContext () -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-    
+
     func reportError (reason : String) {
         let errorReporter = UIAlertController(title: "Cannot Save", message: "\(reason)", preferredStyle: .alert)
         
