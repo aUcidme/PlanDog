@@ -11,11 +11,11 @@ import CoreData
 import UIKit
 
 extension CountDownTo {
-    func getContext() -> NSManagedObjectContext {
+    func getContext() -> NSManagedObjectContext { // 获取 CoreData 的目录
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
     
-    func add (detail : String, date : Date) {
+    func add (detail : String, date : Date) { // 添加一个新的 item
         self.date = date as NSDate?
         self.detail = detail
         
@@ -27,7 +27,7 @@ extension CountDownTo {
         }
     }
     
-    func delete () {
+    func delete () { // 从 CoreData 中删除调用该方法的 item
         getContext().delete(self)
         
         do {
@@ -38,8 +38,8 @@ extension CountDownTo {
         }
     }
     
-    func fetchAll () -> [CountDownTo] {
-        let listagemCoreData = NSFetchRequest<NSFetchRequestResult>(entityName: "CountDownTo")
+    func fetchAll () -> [CountDownTo] { // 从 CoreData 中抓取所有的数据
+        let listagemCoreData = NSFetchRequest <NSFetchRequestResult> (entityName: "CountDownTo")
         return ((try? getContext().fetch(listagemCoreData)) as? [CountDownTo])!
     }
     

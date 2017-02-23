@@ -18,8 +18,7 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        items = (ThingToDo()).fetchAll()//fetchCoreData()
-        
+        items = (ThingToDo()).fetchAll()        
         prepareSelf()
         prepareToDoListTable()
         prepareAddOneButton()
@@ -93,17 +92,9 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func saveString (passedValue : String) {
         let item = NSEntityDescription.insertNewObject(forEntityName: "ThingToDo", into: (ThingToDo()).getContext()) as! ThingToDo
-        if passedValue.isEmpty {
-            self.reportError(title: "Cannot save", detail: "Detail cannot be empty!")
-        }
-        else if item.isDuplicate() {
-            self.reportError(title: "Cannot save", detail: "There is already an item about \(passedValue)")
-        }
-        else {
-            item.add(detail: passedValue)
-            items = (ThingToDo()).fetchAll()
-            self.todoListTable.reloadData()
-        }
+        item.add(detail: passedValue)
+        items = (ThingToDo()).fetchAll()
+        self.todoListTable.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
