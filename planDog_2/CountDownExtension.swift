@@ -44,9 +44,9 @@ extension CountDownTo {
     }
     
     func isDuplicateInAll () -> Bool {
-        let allItems = searchAll(detail: detail!)
+        let items = searchAll(detail: detail!)
         var iCoun = 0
-        for item in allItems {
+        for item in items {
             if item.detail == self.detail {
                 iCoun += 1
             }

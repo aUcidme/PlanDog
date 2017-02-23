@@ -62,13 +62,15 @@ class addOneTotoDo: UIViewController, UITextFieldDelegate {
         item.detail = self.addDetail.text
         if stringPackage == nil && item.detail!.isEmpty {
             self.reportError(title: "Cannot save", detail: "Detail cannot be empty")
+            item.delete()
         }
         else if item.isDuplicate() {
             self.reportError(title: "Cannot save", detail: "There is already a object has \(item.detail!)")
+            item.delete()
         }
         else {
-            stringPackage!(item.detail!)
             item.delete()
+            stringPackage!(item.detail!)
             self.navigationController?.popViewController(animated: true)
         }
     }

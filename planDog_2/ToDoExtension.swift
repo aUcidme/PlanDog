@@ -56,12 +56,25 @@ extension ThingToDo {
         return result?.first
     }
     
+    func searchAll (detail : String) -> [ThingToDo] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ThingToDo")
+        fetchRequest.predicate = NSPredicate(format: "detail = %@", detail)
+        return ((try? getContext().fetch(fetchRequest)) as? [ThingToDo])!
+    }
+    
     func fetchAll () -> [ThingToDo] {
         let listagemCoreData = NSFetchRequest <NSFetchRequestResult> (entityName: "ThingToDo")
         return ((try? getContext().fetch(listagemCoreData)) as? [ThingToDo])!
     }
     
     func isDuplicate () -> Bool { // 如果有重复，返回的会是 true
-        return search(detail: self.detail!) != nil
+        let items = searchAll(detail: self.detail!)
+        var iCoun = 0
+        for item in items {
+            if self.detail == item.detail {
+                iCoun += 1
+            }
+        }
+        return !(iCoun == 0 || iCoun == 1)
     }
 }
