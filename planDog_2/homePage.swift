@@ -19,10 +19,12 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         items = (ThingToDo()).fetchAll()        
+        
         prepareSelf()
         prepareToDoListTable()
         prepareAddOneButton()
         prepareEditButton()
+        preparePulltoRefresh()
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,10 +63,10 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     fileprivate func preparePulltoRefresh () {
-        let refresh = UIRefreshControl()
-        refresh.addTarget(self, action: #selector(Refresh), for: .valueChanged)
+        let pullToRefresh = UIRefreshControl()
+        pullToRefresh.addTarget(self, action: #selector(Refresh), for: .valueChanged)
         
-        todoListTable.addSubview(refresh)
+        todoListTable.addSubview(pullToRefresh)
     }
     
     func Refresh () {
