@@ -189,7 +189,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         cell.detailTextLabel?.font = RobotoFont.light(with: 12)
         
         let timeStillHave = UILabel(frame: CGRect(x: UIScreen.main.bounds.width / 5 * 4 - 50, y: 0, width: UIScreen.main.bounds.width / 5 + 50, height: 60))
-        timeStillHave.font = RobotoFont.regular(with: 35)
+        timeStillHave.font = RobotoFont.regular(with: 20)
         timeStillHave.text = (items[indexPath.row].date as! Date).calculateDayRemain()
         timeStillHave.textAlignment = NSTextAlignment.center
         timeStillHave.textColor = UIColor.black

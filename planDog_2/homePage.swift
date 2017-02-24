@@ -60,6 +60,11 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.navigationItem.leftBarButtonItem = edit
     }
     
+    fileprivate func preparePulltoRefresh () {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: <#T##Selector#>, for: .valueChanged)
+    }
+    
     func reportError (title : String, detail : String) {
         let alertError = UIAlertController(title: title, message: detail, preferredStyle: .alert)
         
@@ -74,6 +79,8 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         editingPage.stringPackage = { value in
             self.saveString(passedValue: value)
+            self.items = (ThingToDo()).fetchAll()
+            self.todoListTable.reloadData()
         }
     }
     

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import UserNotifications
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("用户不允许")
             }
         }
+        
+        FIRApp.configure()
         return true
     }
 

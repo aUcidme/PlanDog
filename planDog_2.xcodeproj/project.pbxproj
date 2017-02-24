@@ -30,6 +30,7 @@
 		BE5A9C941E3C449D00A44A1C /* detailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5A9C931E3C449D00A44A1C /* detailView.swift */; };
 		BE9F39421E5CC20E007699A8 /* CountDownExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */; };
 		BE9F39441E5CCF3B007699A8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F39431E5CCF3B007699A8 /* DateExtension.swift */; };
+		BED317401E5F3BC9006A8CEC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BED3173F1E5F3BC9006A8CEC /* GoogleService-Info.plist */; };
 		BED460511E50E8C500923FBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED460501E50E8C500923FBD /* Assets.xcassets */; };
 		BEEC187F1E560CC300FE008A /* addDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC187E1E560CC300FE008A /* addDetailView.swift */; };
 		BEEC18811E560D7100FE008A /* addDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC18801E560D7100FE008A /* addDateView.swift */; };
@@ -58,6 +59,7 @@
 		43AACCDC7A0176FF26336572 /* Pods_planDog_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_planDog_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE07EB111E500F1F001FFD1B /* addOneTotoDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addOneTotoDo.swift; sourceTree = "<group>"; };
 		BE07EB131E5042CB001FFD1B /* delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = delegates.swift; sourceTree = "<group>"; };
+		BE0BB2771E5F0C6900CE85BD /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		BE3795281E57656D007602C9 /* editView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editView.swift; sourceTree = "<group>"; };
 		BE37952A1E5771AE007602C9 /* editDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDetailView.swift; sourceTree = "<group>"; };
 		BE37952C1E5779A2007602C9 /* editDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDateView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		BE5A9C931E3C449D00A44A1C /* detailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailView.swift; sourceTree = "<group>"; };
 		BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountDownExtension.swift; sourceTree = "<group>"; };
 		BE9F39431E5CCF3B007699A8 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		BED3173F1E5F3BC9006A8CEC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BED460501E50E8C500923FBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEEC187E1E560CC300FE008A /* addDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addDetailView.swift; sourceTree = "<group>"; };
 		BEEC18801E560D7100FE008A /* addDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addDateView.swift; sourceTree = "<group>"; };
@@ -116,6 +119,7 @@
 		BE53F7261E4F2A230044E5B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE0BB2771E5F0C6900CE85BD /* iAd.framework */,
 				BE53F7271E4F2A230044E5B1 /* Material.framework */,
 				43AACCDC7A0176FF26336572 /* Pods_planDog_2.framework */,
 			);
@@ -168,6 +172,7 @@
 				BE5A9BD01E39E28C00A44A1C /* LaunchScreen.storyboard */,
 				BE5A9BD31E39E28C00A44A1C /* Info.plist */,
 				BE5A9BCB1E39E28C00A44A1C /* planDog_2.xcdatamodeld */,
+				BED3173F1E5F3BC9006A8CEC /* GoogleService-Info.plist */,
 			);
 			path = planDog_2;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE5A9BD21E39E28C00A44A1C /* LaunchScreen.storyboard in Resources */,
+				BED317401E5F3BC9006A8CEC /* GoogleService-Info.plist in Resources */,
 				BED460511E50E8C500923FBD /* Assets.xcassets in Resources */,
 				BE5A9BCA1E39E28C00A44A1C /* Main.storyboard in Resources */,
 			);

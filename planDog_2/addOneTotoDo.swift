@@ -70,7 +70,7 @@ class addOneTotoDo: UIViewController, UITextFieldDelegate {
         }
         else {
             item.delete()
-            stringPackage!(item.detail!)
+            stringPackage!(self.addDetail.text!)
             self.navigationController?.popViewController(animated: true)
         }
     }
