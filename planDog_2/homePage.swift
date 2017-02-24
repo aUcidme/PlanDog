@@ -62,7 +62,12 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     fileprivate func preparePulltoRefresh () {
         let refresh = UIRefreshControl()
-        refresh.addTarget(self, action: <#T##Selector#>, for: .valueChanged)
+        refresh.addTarget(self, action: #selector(Refresh), for: .valueChanged)
+    }
+    
+    func Refresh () {
+        items = (ThingToDo()).fetchAll()
+        todoListTable.reloadData()
     }
     
     func reportError (title : String, detail : String) {
