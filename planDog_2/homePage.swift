@@ -63,6 +63,8 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     fileprivate func preparePulltoRefresh () {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(Refresh), for: .valueChanged)
+        
+        todoListTable.addSubview(refresh)
     }
     
     func Refresh () {
