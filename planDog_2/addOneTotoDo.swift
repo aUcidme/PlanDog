@@ -32,6 +32,10 @@ class addOneTotoDo: UIViewController, UITextFieldDelegate {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     fileprivate func prepareSelf () {
         self.view.backgroundColor = UIColor(colorLiteralRed: 217/255, green: 216/255, blue: 216/255, alpha: 1)
         self.title = "Editing"

@@ -16,6 +16,7 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
+  - JustUiKit (0.2.1)
   - Material (2.4.18):
     - Material/Core (= 2.4.18)
   - Material/Core (2.4.18)
@@ -23,6 +24,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/AdMob
   - Firebase/Core
+  - JustUiKit
   - Material
 
 SPEC CHECKSUMS:
@@ -32,8 +34,9 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   Google-Mobile-Ads-SDK: 658065b4cb5a299bea254c4d24bf7786b6d3e75d
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  JustUiKit: 6eab05885265324ca74eb050bdd51019b0de5a55
   Material: 1523b6c85b1d18805da2cb28040000b40bcefc7e
 
-PODFILE CHECKSUM: 44c748dba0f81ca8cf7343d6c04d3daf18246833
+PODFILE CHECKSUM: 34012cc4fcd3bdaee4125d1165517dffbbea2ad6
 
 COCOAPODS: 1.2.0

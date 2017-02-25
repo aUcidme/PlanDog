@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JustUiKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Material-io.cosmicmind.material.fonts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,6 +42,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3D8B712B395CB8AA869F200E01C8AFC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4017B0B8815FF792314F1A877AAA2243</key>
 		<dict>
 			<key>primary</key>
@@ -47,7 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F1C3C69A244562A89E7E8C46067A633</key>
+		<key>BBC6B0E0E4B1C46C829B68DA852CBCA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
