@@ -64,14 +64,16 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     fileprivate func preparePulltoRefresh () {
         let pullToRefresh = UIRefreshControl()
-        pullToRefresh.addTarget(self, action: #selector(Refresh), for: .valueChanged)
+        pullToRefresh.addTarget(self, action: #selector(Refresh(refreshControl:)), for: .valueChanged)
         
         todoListTable.addSubview(pullToRefresh)
     }
     
-    func Refresh () {
+    func Refresh (refreshControl : UIRefreshControl) {
         items = (ThingToDo()).fetchAll()
         todoListTable.reloadData()
+        
+        refreshControl.endRefreshing()
     }
     
     func reportError (title : String, detail : String) {

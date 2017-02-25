@@ -59,7 +59,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     
     fileprivate func preparePullToRefresh () {
         let pullToRefresh = UIRefreshControl()
-        pullToRefresh.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        pullToRefresh.addTarget(self, action: #selector(Refresh), for: .valueChanged)
         countDownList.addSubview(pullToRefresh)
     }
     
@@ -143,7 +143,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         }
     }
     
-    func refresh (refreshControl : UIRefreshControl) {
+    func Refresh (refreshControl : UIRefreshControl) {
         self.items = (CountDownTo()).fetchAll()
         self.countDownList.reloadData()
         

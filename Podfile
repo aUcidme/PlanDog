@@ -6,4 +6,6 @@ target 'planDog_2' do
 pod 'Material'
 pod 'Firebase/Core'
 pod 'Firebase/AdMob'
+pod 'JustUiKit'
 end
+
