@@ -38,7 +38,6 @@
 		BEEF0D661E4EE90100BE9FAB /* versionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0D651E4EE90100BE9FAB /* versionViewController.swift */; };
 		BEEF0D681E4EEC8B00BE9FAB /* aboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0D671E4EEC8B00BE9FAB /* aboutUsViewController.swift */; };
 		BEF5FB1A1E5BEC4C000A7653 /* ToDoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */; };
-		BEF5FB1C1E5BFFB9000A7653 /* backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5FB1B1E5BFFB9000A7653 /* backup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,7 +88,6 @@
 		BEEF0D651E4EE90100BE9FAB /* versionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = versionViewController.swift; sourceTree = "<group>"; };
 		BEEF0D671E4EEC8B00BE9FAB /* aboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutUsViewController.swift; sourceTree = "<group>"; };
 		BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoExtension.swift; sourceTree = "<group>"; };
-		BEF5FB1B1E5BFFB9000A7653 /* backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backup.swift; sourceTree = "<group>"; };
 		E8BAD03BEC7BD1D42E3F370D /* Pods-planDog_2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-planDog_2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-planDog_2/Pods-planDog_2.debug.xcconfig"; sourceTree = "<group>"; };
 		F0634E6AF1D6658E65118799 /* Pods-planDog_2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-planDog_2.release.xcconfig"; path = "Pods/Target Support Files/Pods-planDog_2/Pods-planDog_2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,15 +154,9 @@
 		BE5A9BC31E39E28C00A44A1C /* planDog_2 */ = {
 			isa = PBXGroup;
 			children = (
-				BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */,
-				BE07EB131E5042CB001FFD1B /* delegates.swift */,
-				BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */,
-				BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */,
-				BE9F39431E5CCF3B007699A8 /* DateExtension.swift */,
-				BE4B9B511E5D797F00ACB9AC /* StringExtension.swift */,
-				BEF5FB1B1E5BFFB9000A7653 /* backup.swift */,
+				BEDBD4DC1E644F1800359FC5 /* support files */,
 				BEEF0D641E4EE8E400BE9FAB /* setting */,
-				BE5A9BE61E3A64FD00A44A1C /* complicateThings */,
+				BE5A9BE61E3A64FD00A44A1C /* todayInHistory */,
 				BE5A9BE51E3A64EB00A44A1C /* countDown */,
 				BE53F7311E4F44420044E5B1 /* todoList */,
 				BE5A9BC81E39E28C00A44A1C /* Main.storyboard */,
@@ -194,13 +186,26 @@
 			name = countDown;
 			sourceTree = "<group>";
 		};
-		BE5A9BE61E3A64FD00A44A1C /* complicateThings */ = {
+		BE5A9BE61E3A64FD00A44A1C /* todayInHistory */ = {
 			isa = PBXGroup;
 			children = (
-				BE5A9BD91E39E2E800A44A1C /* Tabbar.swift */,
 				BE5A9BDA1E39E2E800A44A1C /* todayinHistory.swift */,
 			);
-			name = complicateThings;
+			name = todayInHistory;
+			sourceTree = "<group>";
+		};
+		BEDBD4DC1E644F1800359FC5 /* support files */ = {
+			isa = PBXGroup;
+			children = (
+				BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */,
+				BE5A9BD91E39E2E800A44A1C /* Tabbar.swift */,
+				BE07EB131E5042CB001FFD1B /* delegates.swift */,
+				BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */,
+				BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */,
+				BE9F39431E5CCF3B007699A8 /* DateExtension.swift */,
+				BE4B9B511E5D797F00ACB9AC /* StringExtension.swift */,
+			);
+			name = "support files";
 			sourceTree = "<group>";
 		};
 		BEEF0D641E4EE8E400BE9FAB /* setting */ = {
@@ -351,7 +356,6 @@
 				BE5A9BCD1E39E28C00A44A1C /* planDog_2.xcdatamodeld in Sources */,
 				BE37952F1E5779FD007602C9 /* editTimeView.swift in Sources */,
 				BE5A9BC51E39E28C00A44A1C /* AppDelegate.swift in Sources */,
-				BEF5FB1C1E5BFFB9000A7653 /* backup.swift in Sources */,
 				BE37952B1E5771AE007602C9 /* editDetailView.swift in Sources */,
 				BE07EB141E5042CB001FFD1B /* delegates.swift in Sources */,
 				BE5A9BE31E39E2E800A44A1C /* addView.swift in Sources */,
