@@ -64,13 +64,7 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let dateString = addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text
         let timeString = addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text
         
-        if (detailString?.isEmpty)! {
-            self.reportError(reason: "You cannot save an empty project!")
-        }
-        else if (dateString?.isEmpty)! {
-            self.reportError(reason: "You cannot save an empty project!")
-        }
-        else if (timeString?.isEmpty)! {
+        if detailString == nil || dateString == nil || timeString == nil {
             self.reportError(reason: "You cannot save an empty project!")
         }
         else if (dateString?.getDate().dateIsPassed())! {

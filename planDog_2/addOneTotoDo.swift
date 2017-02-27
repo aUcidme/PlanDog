@@ -64,7 +64,7 @@ class addOneTotoDo: UIViewController, UITextFieldDelegate {
     func saveAction () {
         let item = NSEntityDescription.insertNewObject(forEntityName: "ThingToDo", into: (ThingToDo()).getContext()) as! ThingToDo
         item.detail = self.addDetail.text
-        if stringPackage == nil && item.detail!.isEmpty {
+        if stringPackage == nil || item.detail == nil {
             self.reportError(title: "Cannot save", detail: "Detail cannot be empty")
             item.delete()
         }
