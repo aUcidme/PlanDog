@@ -184,11 +184,12 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "countDownID")
+        cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = items[indexPath.row].detail
         cell.detailTextLabel?.text = "To：\((items[indexPath.row].date as! Date).getSpecialString())"
         cell.detailTextLabel?.font = RobotoFont.light(with: 12)
         
-        let timeStillHave = UILabel(frame: CGRect(x: UIScreen.main.bounds.width / 5 * 4 - 50, y: 0, width: UIScreen.main.bounds.width / 5 + 50, height: 60))
+        let timeStillHave = UILabel(frame: CGRect(x: UIScreen.main.bounds.width / 5 * 4 - 70, y: 0, width: UIScreen.main.bounds.width / 5 + 50, height: 60))
         timeStillHave.font = RobotoFont.regular(with: 20)
         timeStillHave.text = (items[indexPath.row].date as! Date).calculateDayRemain()
         timeStillHave.textAlignment = NSTextAlignment.center

@@ -14,7 +14,9 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var items = [ThingToDo]()
     
-    let todoListTable = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: UITableViewStyle.plain)
+    fileprivate var todoListTable = TableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: UITableViewStyle.plain)
+    fileprivate var card : Card!
+    fileprivate var toolBar : Toolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +24,11 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         prepareSelf()
         prepareToDoListTable()
+//        prepareToolBar()
         prepareAddOneButton()
         prepareEditButton()
         preparePulltoRefresh()
+//        prepareCard()
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,15 +69,13 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     fileprivate func preparePulltoRefresh () {
         let pullToRefresh = UIRefreshControl()
         pullToRefresh.addTarget(self, action: #selector(Refresh(refreshControl:)), for: .valueChanged)
-        
         todoListTable.addSubview(pullToRefresh)
     }
     
     func Refresh (refreshControl : UIRefreshControl) {
+        refreshControl.endRefreshing()
         items = (ThingToDo()).fetchAll()
         todoListTable.reloadData()
-        
-        refreshControl.endRefreshing()
     }
     
     func reportError (title : String, detail : String) {
