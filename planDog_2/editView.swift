@@ -148,7 +148,7 @@ class editView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let dateView = editDateView()
             dateView.modalTransitionStyle = .partialCurl
             dateView.dateLabel.text = tableView.cellForRow(at: indexPath)?.textLabel?.text
-            dateView.datePicker.date = passedDate!
+            dateView.datePicker.date = (tableView.cellForRow(at: indexPath)?.textLabel?.text?.getDateFromDateString())!
             self.present(dateView, animated: true, completion: nil)
             dateView.dPackage = {(date) in
                 tableView.cellForRow(at: indexPath)?.textLabel?.text = date
@@ -159,7 +159,7 @@ class editView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let timeView = editTimeView()
             timeView.modalTransitionStyle = .partialCurl
             timeView.timeLabel.text = tableView.cellForRow(at: indexPath)?.textLabel?.text
-            timeView.timePicker.date = passedDate!
+            timeView.timePicker.date = (tableView.cellForRow(at: indexPath)?.textLabel?.text?.getDateFromTimeString())!
             self.present(timeView, animated: true, completion: nil)
             timeView.dPackage = { (time) in
                 tableView.cellForRow(at: indexPath)?.textLabel?.text = time

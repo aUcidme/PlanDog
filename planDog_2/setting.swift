@@ -71,7 +71,7 @@ class setting: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "settingCell")
         cell.imageView?.image = UIImage(named: settingImage[indexPath.row])
         cell.textLabel?.text = settingOptions[indexPath.row]
-        cell.textLabel?.font = RobotoFont.light(with: 16)
+        cell.textLabel?.font = RobotoFont.regular(with: 16)
         
         return cell
     }

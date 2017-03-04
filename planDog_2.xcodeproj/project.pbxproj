@@ -198,8 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				BE5A9BC41E39E28C00A44A1C /* AppDelegate.swift */,
-				BE5A9BD91E39E2E800A44A1C /* Tabbar.swift */,
 				BE07EB131E5042CB001FFD1B /* delegates.swift */,
+				BE5A9BD91E39E2E800A44A1C /* Tabbar.swift */,
 				BEF5FB191E5BEC4C000A7653 /* ToDoExtension.swift */,
 				BE9F39411E5CC20E007699A8 /* CountDownExtension.swift */,
 				BE9F39431E5CCF3B007699A8 /* DateExtension.swift */,
@@ -254,7 +254,8 @@
 				TargetAttributes = {
 					BE5A9BC01E39E28C00A44A1C = {
 						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = TL48E545E4;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -488,7 +489,8 @@
 			baseConfigurationReference = E8BAD03BEC7BD1D42E3F370D /* Pods-planDog_2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = TL48E545E4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -509,7 +511,8 @@
 			baseConfigurationReference = F0634E6AF1D6658E65118799 /* Pods-planDog_2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = TL48E545E4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

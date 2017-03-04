@@ -40,7 +40,7 @@ class addDateView: UIViewController {
     }
     
     fileprivate func prepareDateLabel () {
-        let date = Date()
+        let date = datePicker.date
         dateLabel.text = date.getDateString()
         dateLabel.font = RobotoFont.regular(with: 25)
         view.addSubview(dateLabel)

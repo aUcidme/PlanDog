@@ -39,7 +39,7 @@ class addTimeView: UIViewController {
     }
     
     fileprivate func prepareTimeLabel () {
-        let date = Date()
+        let date = timePicker.date
         timeLabel.text = date.getTimeString()
         timeLabel.font = RobotoFont.regular(with: 25)
         

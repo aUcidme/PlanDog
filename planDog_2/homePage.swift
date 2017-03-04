@@ -128,6 +128,7 @@ class homePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "todoList")
         cell.textLabel?.text = items[indexPath.row].detail
+        cell.textLabel?.font = RobotoFont.regular(with: 16)
         return cell
     }
     

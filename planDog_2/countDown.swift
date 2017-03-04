@@ -186,6 +186,7 @@ class countDown: UIViewController, UITableViewDataSource, UITableViewDelegate, U
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "countDownID")
         cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = items[indexPath.row].detail
+        cell.textLabel?.font = RobotoFont.regular
         cell.detailTextLabel?.text = "To：\((items[indexPath.row].date as! Date).getSpecialString())"
         cell.detailTextLabel?.font = RobotoFont.light(with: 12)
         

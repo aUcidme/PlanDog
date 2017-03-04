@@ -15,7 +15,7 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let addList = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: .grouped)
     
     var cdPackage : countDownPackage?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +35,7 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 33/255, green: 150/255, blue: 243/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white
-        self.title = "Editing"
+        self.title = "Adding"
     }
     
     fileprivate func prepareSaveButton () {
@@ -67,7 +67,7 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if detailString == nil || dateString == nil || timeString == nil {
             self.reportError(reason: "You cannot save an empty project!")
         }
-        else if (dateString?.getDate().dateIsPassed())! {
+        else if (dateString?.getDateFromDateString().dateIsPassed())! {
             self.reportError(reason: "\(dateString!) has passed!")
         }
         else {
@@ -116,6 +116,9 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let detailView = addDetailView()
+            if addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text != nil {
+                detailView.addDetail.text = addList.cellForRow(at: IndexPath.init(row: 0, section: 0))?.textLabel?.text
+            }
             self.navigationController?.pushViewController(detailView, animated: true)
             detailView.dPackage = { (string) in
                 tableView.cellForRow(at: indexPath)?.textLabel?.text = string
@@ -124,6 +127,10 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         else if indexPath.section == 1 {
             let dateView = addDateView()
+            if addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text != nil {
+                dateView.dateLabel.text = addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text
+                dateView.datePicker.date = (addList.cellForRow(at: IndexPath.init(row: 0, section: 1))?.textLabel?.text?.getDateFromDateString())!
+            }
             self.navigationController?.pushViewController(dateView, animated: true)
             dateView.dPackage = { (date) in
                 tableView.cellForRow(at: indexPath)?.textLabel?.text = date.getDateString()
@@ -132,6 +139,9 @@ class addView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         else {
             let timeView = addTimeView()
+            if addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text != nil {
+                timeView.timePicker.date = ((addList.cellForRow(at: IndexPath.init(row: 0, section: 2))?.textLabel?.text)?.getDateFromTimeString())!
+            }
             self.navigationController?.pushViewController(timeView, animated: true)
             timeView.dPackage = { (time) in
                 tableView.cellForRow(at: indexPath)?.textLabel?.text = time.getTimeString()

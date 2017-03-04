@@ -9,10 +9,18 @@
 import Foundation
 
 extension String {
-    func getDate () -> Date {
+    func getDateFromDateString () -> Date {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
         formatter.dateFormat = "yyyy-MM-dd"
+        
+        return formatter.date(from: self)!
+    }
+    
+    func getDateFromTimeString () -> Date {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateFormat = "HH:mm"
         
         return formatter.date(from: self)!
     }
