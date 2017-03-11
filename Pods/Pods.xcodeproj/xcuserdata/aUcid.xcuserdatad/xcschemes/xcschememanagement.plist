@@ -4,17 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>GoogleToolboxForMac.xcscheme</key>
+		<key>Material-com.cosmicmind.material.fonts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Material-io.cosmicmind.material.fonts.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Material-io.cosmicmind.material.icons.xcscheme</key>
+		<key>Material-com.cosmicmind.material.icons.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -29,30 +24,35 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftyDrop.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00103D6C821BE85971C563025527BA5D</key>
+		<key>26E77A4C5EA0E4BC310B6EFA44E48AA0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4017B0B8815FF792314F1A877AAA2243</key>
+		<key>3778B8C2CC3D0E1D353FFFB9A1120B81</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4A2F765C0008E6907A56FA900AB21F77</key>
+		<key>3F3F2CE7329B0A70E49EAAE9389170F9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F1C3C69A244562A89E7E8C46067A633</key>
+		<key>4044B0CB67BE88BC6A86903689094D7C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C10A3D56D9722EC76584E3911946028F</key>
+		<key>808BF1AAB30340347945199AA24226EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

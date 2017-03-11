@@ -1,39 +1,17 @@
 PODS:
-  - Firebase/AdMob (3.14.0):
-    - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.18.0)
-  - Firebase/Core (3.14.0):
-    - FirebaseAnalytics (= 3.7.0)
-    - FirebaseCore (= 3.5.1)
-  - FirebaseAnalytics (3.7.0):
-    - FirebaseCore (~> 3.5)
-    - FirebaseInstanceID (~> 1.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (3.5.1):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (1.0.9)
-  - Google-Mobile-Ads-SDK (7.18.0)
-  - GoogleToolboxForMac/Defines (2.1.1)
-  - GoogleToolboxForMac/NSData+zlib (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
-  - Material (2.4.19):
-    - Material/Core (= 2.4.19)
-  - Material/Core (2.4.19)
+  - Material (2.5.2):
+    - Material/Core (= 2.5.2)
+  - Material/Core (2.5.2)
+  - SwiftyDrop (3.0.3)
 
 DEPENDENCIES:
-  - Firebase/AdMob
-  - Firebase/Core
   - Material
+  - SwiftyDrop
 
 SPEC CHECKSUMS:
-  Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
-  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
-  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
-  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
-  Google-Mobile-Ads-SDK: 658065b4cb5a299bea254c4d24bf7786b6d3e75d
-  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  Material: 67b52869f68ab95757e14801ffba0a52a4f19c31
+  Material: 00ae261fa04dd3f3f8584d07e44ac658fa1bc6fd
+  SwiftyDrop: 785f95aabc26c4d832576bb78dc4ba7d0594a95b
 
-PODFILE CHECKSUM: 7de161918e0234cbc513523357f50c834f362d67
+PODFILE CHECKSUM: 0f10b6bcc364897986996e8341bf5f8c141404c1
 
 COCOAPODS: 1.2.0

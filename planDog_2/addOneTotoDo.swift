@@ -52,7 +52,6 @@ class addOneTotoDo: UIViewController, UITextFieldDelegate {
         addDetail.tag = 200
         addDetail.font = RobotoFont.regular(with: 16)
         addDetail.detail = "Input whatever you want to remember"
-        addDetail.becomeFirstResponder()
         view.addSubview(addDetail)
     }
     

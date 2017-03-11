@@ -42,7 +42,6 @@ class editDetailView: UIViewController, UITextFieldDelegate {
         editDetail.adjustsFontSizeToFitWidth = true
         editDetail.minimumFontSize = 10
         editDetail.delegate = self
-        editDetail.becomeFirstResponder()
         editDetail.font = RobotoFont.regular(with: 16)
         editDetail.detail = "Input whatever you want to remember"
         view.addSubview(editDetail)

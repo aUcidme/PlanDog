@@ -9,7 +9,7 @@
 import UIKit
 import Material
 
-class todayinHistory: UIViewController {
+class todayinHistory: UIViewController, UIWebViewDelegate {
 
     let wikiView = UIWebView(frame: CGRect(x: 0, y: 45, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 45))
     
@@ -56,7 +56,7 @@ class todayinHistory: UIViewController {
         dateLabel.textColor = UIColor(red: 130.0/255.0, green: 129.0/255.0, blue: 127.0/255.0, alpha: 1.0)
         dateLabel.textAlignment = .center
         
-        self.view.addSubview(dateLabel)
+        view.addSubview(dateLabel)
     }
     
     fileprivate func prepareRefreshButton () {
@@ -65,10 +65,17 @@ class todayinHistory: UIViewController {
         self.navigationItem.rightBarButtonItem = refreshButton
     }
     
+    
     func refresh () {
         let wikiLink = NSURL(string: "https://en.wikipedia.org/wiki/Wikipedia:On_this_day/Today")
         let wikiLinkRequest = NSURLRequest(url: wikiLink as! URL)
         wikiView.loadRequest(wikiLinkRequest as URLRequest)
     }
 
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        print("Start did load!")
+    }
+    
+    
+    
 }

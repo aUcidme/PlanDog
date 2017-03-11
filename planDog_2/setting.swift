@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import SwiftyDrop
 
 class setting: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -61,10 +62,7 @@ class setting: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func exitButtonAction () {
-        let exitRemind = Snackbar()
-        exitRemind.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - (self.tabBarController?.tabBar.frame.size.height)! - 35, width: UIScreen.main.bounds.width, height: 35)
-        exitRemind.text = "Don't be so lazy! Push the home button! "
-        view.addSubview(exitRemind)
+        Drop.down("Don't be so lazy! Push the home button!")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
