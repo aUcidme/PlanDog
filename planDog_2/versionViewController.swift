@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import SwiftyDrop
 
 class versionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -65,6 +66,7 @@ class versionViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Drop.down((tableView.cellForRow(at: indexPath)?.textLabel?.text!)!)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
