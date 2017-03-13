@@ -46,13 +46,8 @@ class todayinHistory: UIViewController, UIWebViewDelegate {
     fileprivate func prepareDateLabel () {
         let date = Date()
         
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.timeZone = TimeZone(abbreviation: "CST")
-        formatter.dateFormat = "yyyy年MM月dd日"
-        
         let dateLabel = UILabel(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.height, width: UIScreen.main.bounds.width, height: 45))
-        dateLabel.text = formatter.string(from: date)
+        dateLabel.text = date.getDateString()
         dateLabel.backgroundColor = .white
         dateLabel.textColor = UIColor(red: 130.0/255.0, green: 129.0/255.0, blue: 127.0/255.0, alpha: 1.0)
         dateLabel.textAlignment = .center
