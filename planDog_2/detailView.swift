@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import Material
-import GoogleMobileAds
 
 class detailView: UIViewController, PassValueDelegate {
 
@@ -34,10 +33,6 @@ class detailView: UIViewController, PassValueDelegate {
         prepareLabel()
         prepareToolBar()
         prepareStatusBar()
-        let banner = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        banner.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        banner.rootViewController = self
-        banner.load(GADRequest())
     }
 
     override func didReceiveMemoryWarning() {

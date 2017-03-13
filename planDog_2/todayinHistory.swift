@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import WebKit
 import Material
 
 class todayinHistory: UIViewController, UIWebViewDelegate {
 
-    let wikiView = UIWebView(frame: CGRect(x: 0, y: 45, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 45))
+    let WikiWebView = WKWebView(frame: CGRect(x: 0, y: 45, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 45))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +39,8 @@ class todayinHistory: UIViewController, UIWebViewDelegate {
     fileprivate func prepareWebView () {
         let wikiLink = NSURL(string: "https://en.wikipedia.org/wiki/Wikipedia:On_this_day/Today")
         let wikiLinkRequest = NSURLRequest(url: wikiLink as! URL)
-        wikiView.loadRequest(wikiLinkRequest as URLRequest)
-        view.addSubview(wikiView)
+        WikiWebView.load(wikiLinkRequest as URLRequest)
+        view.addSubview(WikiWebView)
     }
     
     fileprivate func prepareDateLabel () {
@@ -69,7 +70,7 @@ class todayinHistory: UIViewController, UIWebViewDelegate {
     func refresh () {
         let wikiLink = NSURL(string: "https://en.wikipedia.org/wiki/Wikipedia:On_this_day/Today")
         let wikiLinkRequest = NSURLRequest(url: wikiLink as! URL)
-        wikiView.loadRequest(wikiLinkRequest as URLRequest)
+        WikiWebView.load(wikiLinkRequest as URLRequest)
     }
 
     func webViewDidStartLoad(_ webView: UIWebView) {

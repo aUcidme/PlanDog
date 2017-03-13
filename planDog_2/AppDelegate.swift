@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import UserNotifications
 import Material
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        FIRApp.configure()
         return true
     }
 
